@@ -1,80 +1,101 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield("title")</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Themesdesign" />
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="images/favicon.ico">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{asset("assets/main/css/bootstrap.min.css")}}" type="text/css">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="{{asset("assets/main/css/materialdesignicons.min.css")}}" />
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset("assets/main/css/fontawesome.css")}}" />
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="{{asset("assets/main/css/selectize.css")}}" />
+
+    <!--Slider-->
+    <link rel="stylesheet" href="{{asset("assets/main/css/owl.carousel.css")}}" />
+    <link rel="stylesheet" href="{{asset("assets/main/css/owl.theme.css")}}" />
+    <link rel="stylesheet" href="{{asset("assets/main/css/owl.transitions.css")}}" />
+
+    <!-- Custom  Css -->
+    <link rel="stylesheet" type="text/css" href="{{asset("assets/main/css/style.css")}}" />
+    <script>
+        window.__INITIAL_STATE__ = "{{url('/')}}";
+    </script>
+    <!-- fontawesome css -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+    <!-- Toastr -->
+    <link href="{{asset('assets/toastr/toastr.min.css')}}" rel="stylesheet"/>
+
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+  <body>
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        </div>
     </div>
+    <!-- Loader -->
+    @include('includes.header')
+    <section class="section">
+        @yield('content')
+    </section>
+
+    @include('includes.footer')
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Back to top -->
+
+    <!-- javascript -->
+    <script src="{{asset("assets/main/js/jquery.min.js")}}"></script>
+    <script src="{{asset("assets/main/js/bootstrap.bundle.min.js")}}"></script>
+    <script src="{{asset("assets/main/js/jquery.easing.min.js")}}"></script>
+    <script src="{{asset("assets/main/js/plugins.js")}}"></script>
+
+    <!-- selectize js -->
+    <script src="{{asset("assets/main/js/selectize.min.js")}}"></script>
+    <script src="{{asset("assets/main/js/jquery.nice-select.min.js")}}"></script>
+
+    <script src="{{asset("assets/main/js/owl.carousel.min.js")}}"></script>
+    <script src="{{asset("assets/main/js/counter.int.js")}}"></script>
+
+    <script src="{{asset("assets/main/js/app.js")}}"></script>
+    <script src="{{asset("assets/main/js/home.js")}}"></script>
+    <script src="{{asset('assets/toastr/toastr.min.js')}}"></script>
+
+    <script>
+        @if(Session()->has('success'))
+
+        toastr.success("{{Session('success')}}")
+        @endif
+
+        @if(Session()->has('warning'))
+
+        toastr.warning("{{Session('warning')}}")
+        @endif
+
+        @if(count($errors)>0)
+            @foreach($errors->all() as $error)
+                toastr.error("{{$error}}")
+            @endforeach
+        @endif
+        </script>
+  @yield('scripts')
 </body>
 </html>

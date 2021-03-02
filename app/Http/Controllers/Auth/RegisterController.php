@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -52,7 +53,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'ref_by' => ['nullable','string'],
         ]);
     }
 
@@ -64,10 +67,48 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        if($data['ref_by']!=NULL){
+            if(\App\User::where('ref_code',$data['ref_by'])->exists()){
+                $user = \App\User::where('ref_code',$data['ref_by'])->first();
+                $ref_by = $user->id;
+            }
+            else{
+                Session()->flash('error', "Refral code does not exist");
+                $ref_by=NULL;
+            }
+        }
+        else{
+            $ref_by = NULL;
+        }
+        while(true){
+            $ref_code = $this->randstr(5);
+            if(\App\User::where('ref_code',$ref_code)->exists()){
+
+            }
+            else{
+                break;
+            }
+        }
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'user_name' => $data['email'],
+            'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
+            'ref_by' => $ref_by,
+            'ref_code' => $ref_code,
         ]);
+        Auth::login($user);
+        return $user;
+    }
+    public function randstr ($len=10, $abc="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789") 
+    {
+        $letters = str_split($abc);
+        $str = "";
+        for ($i=0; $i<=$len; $i++) {
+            $str .= $letters[rand(0, count($letters)-1)];
+        };
+        return $str;
     }
 }
