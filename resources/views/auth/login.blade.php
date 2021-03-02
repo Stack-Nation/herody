@@ -1,86 +1,52 @@
 @extends('layouts.app')
 @section('title', config('app.name').' | Login')
-@section('heads')
-    <style type="text/css">
-  .mobileShow {display: none;}
-
-  /* Smartphone Portrait and Landscape */
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px){ 
-      .mobileShow {display: inline;}
-  }
-</style>
-@endsection
 @section('content')
-<!-- Mirrored from Viti2 -->
-
+<!-- Hero Start -->
 <section>
-    <div class="block no-padding  gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner2">
-                        <div class="inner-title2">
-                            <h3>Candidate</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section>
-    <div class="block remove-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="account-popup-area signup-popup-box static">
-                        <div class="account-popup">
-                            <h3>Sign In</h3>
-                            <form action="{{route('login')}}" method="POST">
-                                @csrf
-                                <div class="cfield">
-                                    <input name="user_name" type="text" placeholder="Email" />
-                                    <i class="la la-user"></i>
-                                </div>
-                                <div class="cfield">
-                                    <input name="password" type="password" placeholder="Password" />
-                                    <i class="la la-key"></i>
-                                </div>
-                                <span class="float-right"><a href="{{ route('password.request') }}" class="btn-link">Forgot Password?</a></span>
-                                <button type="submit">Signin</button>
-                            </form>
-                            <div class="extra-login">
-                                <span>Or</span>
-                                <div class="sign-info">
-                                    <span class="dark-color d-inline-block line-height-2">Do Not Have Account ? <a href="{{ route('register') }}">Sign Up</a></span>
-                                
-                                </div>
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="login-page bg-white shadow rounded p-4">
+                            <div class="text-center">
+                                <h4 class="mb-4">Student Login</h4>  
                             </div>
-                        </div>
-                    </div><!-- SIGNUP POPUP -->
-                </div>
-            </div>
+                            <form class="login-form" action="{{route('login')}}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group position-relative">
+                                            <label>Your Email <span class="text-danger">*</span></label>
+                                            <input name="user_name" type="email" placeholder="Email" class="form-control" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-group position-relative">
+                                            <label>Password <span class="text-danger">*</span></label>
+                                            <input name="password" type="password" placeholder="Password" class="form-control" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <p class="float-right forgot-pass"><a href="{{ route('password.request') }}" class="text-dark font-weight-bold">Forgot password ?</a></p>
+                                    </div>
+                                    <div class="col-lg-12 mb-0">
+                                        <button class="btn btn-primary w-100">Sign in</button>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <p class="mb-0 mt-3"><small class="text-dark mr-2">Don't have an account ?</small> <a href="{{ route('register') }}" class="text-dark font-weight-bold">Sign Up</a></p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!---->
+                    </div> <!--end col-->
+                </div><!--end row-->
+            </div> <!--end container-->
         </div>
     </div>
-</section>
-@endsection
-
-@section('scripts')
-
-<script>
-    function logint(){
-        window.location = "truecallersdk://truesdk/web_verify?requestNonce=14523678&partnerKey=SELIu8fd241fbfbd34429a4ed17e79d6bea4f&partnerName=Herody&lang=en&title=Login";
-
-        setTimeout(function() {
-
-        if( document.hasFocus() ){
-            alert('You do not have truecaller app installed on your device');
-        }
-        else{
-            
-            }
-        }, 600);
-    }
-</script>
+</section><!--end section-->
+<!-- Hero End -->
 @endsection

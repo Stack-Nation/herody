@@ -32,9 +32,6 @@ use TextLocal;
 
 class DashboardController extends Controller
 {
-    public function download(){
-        echo "<script>location.href='".env('APP_PLAYSTORE')."';</script>";
-    }
     public function dashboard(){
         $user = Auth::user();
         $exps = Experiences::where('uid',$user->id)->get();

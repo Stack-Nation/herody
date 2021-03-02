@@ -36,6 +36,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
     <!-- Toastr -->
     <link href="{{asset('assets/toastr/toastr.min.css')}}" rel="stylesheet"/>
+    @if(Auth::check() or Auth::guard('employer')->check() or Auth::guard('manager')->check() or Auth::check())
+        <link rel="stylesheet" href="{{asset('assets/user/css/mnav.css')}}" type="text/css">
+    @endif
+    @yield("heads")
 
 </head>
   <body>
@@ -53,8 +57,9 @@
     <section class="section">
         @yield('content')
     </section>
-
+    @if(!Request::is("user*"))
     @include('includes.footer')
+    @endif
 
     <!-- Back to top -->
     <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
@@ -78,6 +83,7 @@
     <script src="{{asset("assets/main/js/app.js")}}"></script>
     <script src="{{asset("assets/main/js/home.js")}}"></script>
     <script src="{{asset('assets/toastr/toastr.min.js')}}"></script>
+    <script src="{{asset('assets/user/js/mnav.js')}}" type="text/javascript"></script>
 
     <script>
         @if(Session()->has('success'))

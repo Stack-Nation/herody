@@ -94,7 +94,6 @@ if($user->achievements!=NULL){
        
         </div>
         <div class="col-xl-8 order-xl-1">
-          
           <div class="card">
             <div class="card-header">
               <div class="row align-items-center">
@@ -136,7 +135,7 @@ if($user->achievements!=NULL){
                       </div>
                           <hr>
                      <div class="row">
-                      <div class="col-lg-12">
+                      <div class="col-lg-12 mt-2 mb-2">
                         <div class="form-group">
                           <span class="form-control-label" for="input-email">Experience Details</span>
                           <button type="button" class="btn btn-primary" data-toggle="modal" style="float: right;" data-target="#expModal">
@@ -162,7 +161,7 @@ if($user->achievements!=NULL){
                       </div>
                           <hr>
                   <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 mt-2 mb-2">
                       <div class="form-group">
                         <span class="form-control-label">Project Details</span>
                         <button type="button" class="btn btn-primary" data-toggle="modal" style="float: right;" data-target="#projModal">
@@ -186,7 +185,7 @@ if($user->achievements!=NULL){
                       </div>
                     <hr>
                     <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 mt-2 mb-2">
                       <div class="form-group">
                         <span class="form-control-label" for="input-last-name">Skills</span>
                         <button type="button" class="btn btn-primary" data-toggle="modal" style="float: right;" data-target="#skillModal">
@@ -208,7 +207,7 @@ if($user->achievements!=NULL){
                       </div>
                   <hr>
                   <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 mt-2 mb-2">
                       <div class="form-group">
                         <div class="form-control-label">
                           <span class="form-control-label" for="input-email">Hobbies</span>
@@ -232,7 +231,7 @@ if($user->achievements!=NULL){
                    </div>
                    <hr>
                   <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 mt-2 mb-2">
                       <div class="form-group">
                         <div class="form-control-label">
                           <span class="form-control-label" for="input-email">Achievements</span>
@@ -257,7 +256,7 @@ if($user->achievements!=NULL){
                   <hr>
                   
                   <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 mt-2 mb-2">
                       <div class="form-group">
                         <div class="form-control-label">
                           <span class="form-control-label" for="input-email">Social Profiles</span>
@@ -322,7 +321,7 @@ if($user->achievements!=NULL){
             <form action="{{route('user.edu-update')}}" method="POST">
             @csrf
                 <div class="input-group mb-2">
-                    <span for="type" style="display:block">@lang('Institute Type')</span>
+                    <label for="type" style="display:block">@lang('Institute Type')</label>
                     <select name="type" id="type" class="custom-select">
                         <option value="School">School</option>
                         <option value="High School">High School</option>
@@ -334,25 +333,25 @@ if($user->achievements!=NULL){
                     </select>
                 </div>
                 <div class="input-group mb-2">
-                    <span for="name">@lang('Institute Name')</span>
-                    <input name="name" type="text" placeholder="@lang('Institute Name')">
+                    <label for="name">@lang('Institute Name')</label>
+                    <input name="name" class="form-control" type="text" placeholder="@lang('Institute Name')">
                 </div>
                 <div class="input-group mb-2">
-                    <span for="course">@lang('Course Name')</span>
-                    <input name="course" type="text" placeholder="@lang('Course Name')">
+                    <label for="course">@lang('Course Name')</label>
+                    <input name="course" class="form-control" type="text" placeholder="@lang('Course Name')">
                 </div>
                 <div class="input-group mb-2">
-                    <span for="start">@lang('Start Year')</span>
-                    <input name="start" type="text" placeholder="@lang('Start Year')">
+                    <label for="start">@lang('Start Year')</label>
+                    <input name="start" class="form-control" type="text" placeholder="@lang('Start Year')">
                 </div>
                 <div class="input-group mb-2">
-                <label><input style="height:1em" type="checkbox" onchange="document.getElementById('end').value='Currently Here'">
+                <label><input style="height:1em" class="form-control" type="checkbox" onchange="document.getElementById('end').value='Currently Here'">
                     @lang('Currently here')</label>
                 </div>
                 
                 <div class="input-group mb-2">
-                    <span for="end">@lang('End Year')</span>
-                    <input name="end" type="text" placeholder="@lang('End Year')" id="end">
+                    <label for="end">@lang('End Year')</label>
+                    <input name="end" class="form-control" type="text" placeholder="@lang('End Year')" id="end">
                 </div>
                 <button class="btn btn-success">Add</button>
             </form>
@@ -379,29 +378,29 @@ if($user->achievements!=NULL){
         <form action="{{route('user.exp-update')}}" method="POST">
         @csrf
             <div class="input-group mb-2">
-                <span for="company">@lang('Organization')</span>
-                <input name="company" type="text" placeholder="@lang('Organization')">
+                <label for="company">@lang('Organization')</label>
+                <input name="company" class="form-control" type="text" placeholder="@lang('Organization')">
             </div>
             <div class="input-group mb-2">
-                <span for="designation">@lang('Designation')</span>
-                <input name="designation" type="text" placeholder="@lang('Designation')">
+                <label for="designation">@lang('Designation')</label>
+                <input name="designation" class="form-control" type="text" placeholder="@lang('Designation')">
             </div>
             <div class="input-group mb-2">
-                <span for="des">@lang('Description')</span>
+                <label for="des">@lang('Description')</label>
                 <textarea name="des" id="des" style="display:none"></textarea>
                 <div contenteditable="true" class="divd" onkeyup="document.getElementById('des').value=this.innerHTML"></div>
             </div>
             <div class="input-group mb-2">
-                <span for="start">@lang('Start Year')</span>
-                <input name="start" type="text" placeholder="@lang('Start Year')">
+                <label for="start">@lang('Start Year')</label>
+                <input name="start" class="form-control" type="text" placeholder="@lang('Start Year')">
             </div>
                 <div class="input-group mb-2">
                 <label><input style="height:1em" type="checkbox" onchange="document.getElementById('endw').value='Currently Here'">
                     @lang('Currently here')</label>
                 </div>
             <div class="input-group mb-2">
-                <span for="end">@lang('End Year')</span>
-                <input name="end" type="text" placeholder="@lang('End Year')" id="endw">
+                <label for="end">@lang('End Year')</label>
+                <input name="end" type="text" class="form-control" placeholder="@lang('End Year')" id="endw">
             </div>
             <button class="btn btn-success">Add</button>
         </form>
@@ -428,11 +427,11 @@ if($user->achievements!=NULL){
         <form action="{{route('user.proj-update')}}" method="POST">
         @csrf
             <div class="input-group mb-2">
-                <span for="title">@lang('Title')</span>
-                <input name="title" type="text" placeholder="@lang('Title')">
+                <label for="title">@lang('Title')</label>
+                <input name="title" class="form-control" type="text" placeholder="@lang('Title')">
             </div>
             <div class="input-group mb-2">
-                <span for="projdes">@lang('Description')</span>
+                <label for="projdes">@lang('Description')</label>
                 <textarea name="projdes" id="projdes" style="display:none"></textarea>
                 <div contenteditable="true" class="divd" onkeyup="document.getElementById('projdes').value=this.innerHTML"></div>
             </div>
@@ -461,11 +460,11 @@ if($user->achievements!=NULL){
         <form action="{{route('user.skill-update')}}" method="POST">
         @csrf
             <div class="input-group mb-2">
-                <span for="name">@lang('Skill')</span>
-                <input name="name" type="text" placeholder="@lang('Skill')">
+                <label for="name">@lang('Skill')</label>
+                <input name="name" class="form-control" type="text" placeholder="@lang('Skill')">
             </div>
             <div class="input-group mb-2">
-                <span for="rating">@lang('Rating')</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="rating">@lang('Rating')</label> &nbsp;&nbsp;&nbsp;&nbsp;
                 <input name="rating" type="text" class="rating" placeholder="@lang('rate')" hidden>
 
                 <div class="starrr"></div>
@@ -494,8 +493,8 @@ if($user->achievements!=NULL){
         <form action="{{route('user.hobby-update')}}" method="POST">
         @csrf
             <div class="input-group mb-2">
-                <span for="name">@lang('Hobbies')</span>
-                <input name="hobby" type="text" placeholder="@lang('Hobbies')" value="{{$user->hobbies}}">
+                <label for="name">@lang('Hobbies')</label>
+                <input name="hobby" class="form-control" type="text" placeholder="@lang('Hobbies')" value="{{$user->hobbies}}">
             </div>
             <button class="btn btn-success">Add</button>
         </form>
@@ -521,8 +520,8 @@ if($user->achievements!=NULL){
         <form action="{{route('user.ach-update')}}" method="POST">
         @csrf
             <div class="input-group mb-2">
-                <span for="name">@lang('Achievements')</span>
-                <input name="ach" type="text" placeholder="@lang('Achievements')" value="{{$user->achievements}}">
+                <label for="name">@lang('Achievements')</label>
+                <input name="ach" class="form-control" type="text" placeholder="@lang('Achievements')" value="{{$user->achievements}}">
             </div>
             <button class="btn btn-success">Add</button>
         </form>
@@ -548,24 +547,24 @@ if($user->achievements!=NULL){
         <form action="{{route('user.social-update')}}" method="POST">
         @csrf
             <div class="input-group mb-2">
-                <span for="fb"><i class="fab fa-facebook"></i>@lang('Facebook')</span>
-                <input name="fb" type="text" placeholder="@lang('Facebook')" value="{{$user->fb}}">
+                <label for="fb"><i class="fab fa-facebook"></i>@lang('Facebook')</label>
+                <input name="fb" class="form-control" type="text" placeholder="@lang('Facebook')" value="{{$user->fb}}">
             </div>
             <div class="input-group mb-2">
-                <span for="twitter"><i class="fab fa-twitter"></i>@lang('Twitter')</span>
-                <input name="twitter" type="text" placeholder="@lang('Twitter')" value="{{$user->twitter}}">
+                <label for="twitter"><i class="fab fa-twitter"></i>@lang('Twitter')</label>
+                <input name="twitter" class="form-control" type="text" placeholder="@lang('Twitter')" value="{{$user->twitter}}">
             </div>
             <div class="input-group mb-2">
-                <span for="linkedin"><i class="fab fa-linkedin"></i>@lang('LinkedIn')</span>
-                <input name="linkedin" type="text" placeholder="@lang('LinkedIn')" value="{{$user->linkedin}}">
+                <label for="linkedin"><i class="fab fa-linkedin"></i>@lang('LinkedIn')</label>
+                <input name="linkedin" class="form-control" type="text" placeholder="@lang('LinkedIn')" value="{{$user->linkedin}}">
             </div>
             <div class="input-group mb-2">
-                <span for="github"><i class="fab fa-github"></i>@lang('GitHub')</span>
-                <input name="github" type="text" placeholder="@lang('GitHub')" value="{{$user->github}}">
+                <label for="github"><i class="fab fa-github"></i>@lang('GitHub')</label>
+                <input name="github" class="form-control" type="text" placeholder="@lang('GitHub')" value="{{$user->github}}">
             </div>
             <div class="input-group mb-2">
-                <span for="insta"><i class="fab fa-instagram"></i>@lang('Instagram')</span>
-                <input name="insta" type="text" placeholder="@lang('Instagram')" value="{{$user->insta}}">
+                <label for="insta"><i class="fab fa-instagram"></i>@lang('Instagram')</label>
+                <input name="insta" class="form-control" type="text" placeholder="@lang('Instagram')" value="{{$user->insta}}">
             </div>
             <button class="btn btn-success">Add</button>
         </form>

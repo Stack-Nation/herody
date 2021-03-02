@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/user/app-download';
+    public const HOME = '/user/dashboard';
 
     /**
      * Define your route model bindings, pattern filters, etc.

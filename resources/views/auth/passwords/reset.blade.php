@@ -1,36 +1,51 @@
 @extends('layouts.app')
 @section('title', config('app.name').' | Reset Password')
 @section('content')
+<!-- Hero Start -->
 <section>
-    <div class="block remove-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="account-popup-area signup-popup-box static">
-                        <div class="account-popup">
-                            <h3>Reset Password</h3>
-                            <form action="{{ route('password.update') }}" method="POST">
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="login-page bg-white shadow rounded p-4">
+                            <div class="text-center">
+                                <h4 class="mb-4">Reset Password</h4>  
+                            </div>
+                            <form class="login-form" action="{{ route('password.update') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="token" value="{{ $token }}">
-                                <div class="cfield">
-                                    <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter your email" required autocomplete="email" autofocus>
-                                    <i class="fa fa-user"></i>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group position-relative">
+                                            <label>Your Email <span class="text-danger">*</span></label>
+                                            <input name="email" type="email" placeholder="Email" class="form-control" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-group position-relative">
+                                            <label>New Password <span class="text-danger">*</span></label>
+                                            <input name="password" type="password" placeholder="New Password" class="form-control" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-group position-relative">
+                                            <label>Confirm new password <span class="text-danger">*</span></label>
+                                            <input name="password_confirmation" type="password" placeholder="Confirm new password" class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-0">
+                                        <button class="btn btn-primary w-100">Reset Password</button>
+                                    </div>
                                 </div>
-                                <div class="cfield">
-                                    <input id="password" placeholder="Enter new password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                    <i class="fa fa-lock"></i>
-                                </div>
-                                <div class="cfield">
-                                <input id="password-confirm" placeholder="Confirm new password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                    <i class="fa fa-lock"></i>
-                                </div>
-                                <button type="submit">{{ __('Reset Password') }}</button>
                             </form>
-                        </div>
-                    </div><!-- SIGNUP POPUP -->
-                </div>
-            </div>
+                        </div><!---->
+                    </div> <!--end col-->
+                </div><!--end row-->
+            </div> <!--end container-->
         </div>
     </div>
-</section>
+</section><!--end section-->
+<!-- Hero End -->
 @endsection
