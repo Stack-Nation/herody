@@ -4,12 +4,12 @@
       <div class="container">
           <!-- Logo container-->
           <div>
-              <a href="index.html" class="logo">
+              <a href="{{route("index")}}" class="logo">
                   <img src="{{asset("assets/main/images/logo-dark.png")}}" alt="" class="logo-dark" height="18" />
               </a>
           </div>                 
           <div class="buy-button">
-              <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
+              <a href="{{route("employer.for-businesses")}}" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> For Businesses</a>
           </div><!--end login button-->
           <!-- End Logo container-->
           <div class="menu-extras">
@@ -36,9 +36,11 @@
                   <li>
                     <a href="{{route('gigs')}}">Gigs</a>
                   </li>
+                  @if(!Auth::check() and !Auth::guard('employer')->check() and !Auth::guard('manager')->check())
                   <li>
-                    <a href="{{route('campaigns')}}">Projects</a>
+                    <a href="{{route('register')}}">Register</a>
                   </li>
+                  @endif
                   @if(Auth::check())
                   <li>
                     <a href="{{route('user.withdraw')}}">

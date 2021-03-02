@@ -32,23 +32,6 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
     Route::post('change-password','HomeController@PasswordUpdate')->name('changePassword');
     Route::post('logout','HomeController@logout')->name('logout');
 
-    // Campaigns
-    Route::get('campaigns','MissionController@index')->name('missions');
-    Route::get('campaign/create','MissionController@creater')->name('mission.create');
-    Route::post('campaign/create','MissionController@create')->name('mission.create');
-    Route::post('campaign/editform','MissionController@editform')->name('mission.editform');
-    Route::put('campaign/updateform/{id}','MissionController@updateform')->name('mission.updateform');
-    Route::post('storeForm','MissionController@storeForm')->name('mission.storeForm');
-    Route::post('campaign/delete','MissionController@delete')->name('mission.delete');
-    Route::get('campaign/applications/{id}','MissionController@applications')->name('mission.applications');
-    Route::get('campaign/applications/accept/{id}','MissionController@accept')->name('mission.accept');
-    Route::get('campaign/applications/reject/{id}','MissionController@reject')->name('mission.reject');
-    Route::get('campaign/response/{id}','MissionController@response')->name('mission.response');
-    Route::post('campaign/response/accept','MissionController@acceptResp')->name('mission.acceptResp');
-    Route::post('campaign/response/reject','MissionController@rejectResp')->name('mission.rejectResp');
-    Route::post('campaign/make-mobile', 'MissionController@makeMobile')->name('mission.make-mobile');
-    Route::post('campaign/undo-mobile', 'MissionController@undoMobile')->name('mission.undo-mobile');
-
     //Gig
     Route::get('gig', 'CampaignController@ShowAllCampaign')->name('campaign.all');
     Route::get('pending-gig', 'CampaignController@pendings')->name('campaign.pendings');
@@ -109,25 +92,11 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
     Route::get('project/export','JobController@export_excel')->name('project.export');
     Route::get('gig/export','CampaignController@export_excel')->name('gig.export');
     Route::get('gig/export/apps/{id}','CampaignController@export_apps')->name('gig.apps.export');
-    Route::get('campaign/export','MissionController@export_excel')->name('campaign.export');
-    Route::get('campaign/export/apps/{id}','MissionController@export_apps')->name('campaign.apps.export');
     Route::get('withdraw/export','WithdrawController@export_excel')->name('withdraw.export');
 
     // Employers
     Route::get('employers','EmployerController@index')->name('employers');
     Route::post('employer/login','EmployerController@login')->name('employer.login');
-
-    // Telecallings
-    Route::get('telecallings','TelecallingController@index')->name('telecallings');
-    Route::get('telecallings/create','TelecallingController@create')->name('telecalling.create');
-    Route::post('telecallings/create','TelecallingController@createPost')->name('telecalling.create');
-    Route::post('telecallings/delete','TelecallingController@delete')->name('telecalling.delete');
-    Route::get('telecalling/applications/{id}','TelecallingController@applications')->name('telecalling.applications');
-    Route::post('telecalling/distribute','TelecallingController@distribute')->name('telecalling.distribute');
-    Route::post('telecalling/application/select','TelecallingController@select')->name('telecalling.select');
-    Route::post('telecalling/application/reject','TelecallingController@reject')->name('telecalling.reject');
-    Route::get('telecalling/application/view-data/{tid}/{uid}','TelecallingController@viewData')->name('telecalling.viewdata');
-    Route::get('telecalling/application/view-feedback/{id}','TelecallingController@feedback')->name('telecalling.feedback');
 });
 
 
@@ -245,14 +214,6 @@ Route::post('gig/proof/ls','GigController@proofls')->name('campaign.proofls');
 // Applicant View
 Route::get('users/{id}','JobController@selecteds')->name('applicant.view');
 Route::get('users/{id}/print','JobController@selecteds')->name('print.view');
-
-// Campaigns
-Route::get('campaigns','CampaignController@list')->name('campaigns');
-Route::get('campaign/details/{id}','CampaignController@details')->name('mission.details');
-Route::post('campaign/apply','CampaignController@apply')->name('mission.apply')->middleware(['auth','verified']);
-Route::post('campaign/submit-response','CampaignController@responser')->name('campaign.responser')->middleware(['auth','verified']);
-Route::get('campaign/submit-responsea/{id}/{uid}','CampaignController@responsera')->name('campaign.responsera');
-Route::post('campaign/submit/{id}/{cid}','CampaignController@response')->name('campaign.response')->middleware(['auth','verified']);
 
 
 // Users
