@@ -29,31 +29,6 @@
 
             </ul>
         </li>
-
-        <li>
-            <a href="#missions" data-toggle="collapse">
-                <i class="fas fa-briefcase"></i> Projects
-            </a>
-            <ul id="missions" class="list-unstyled collapse">
-
-                <li><a href="{{route('admin.missions')}}"><i class="far fa-circle"></i> All Projects</a></li>
-                <li><a href="{{route('admin.mission.create')}}"><i class="far fa-circle"></i> Create Project</a></li>
-                <li><a href="{{route('admin.campaign.export')}}"><i class="far fa-circle"></i> Export all to excel</a></li>
-
-            </ul>
-        </li>
-
-        <li>
-            <a href="#telecalling" data-toggle="collapse">
-                <i class="fas fa-briefcase"></i> Telecalling Projects
-            </a>
-            <ul id="telecalling" class="list-unstyled collapse">
-
-                <li><a href="{{route('admin.telecallings')}}"><i class="far fa-circle"></i> All Telecalling Projects</a></li>
-                <li><a href="{{route('admin.telecalling.create')}}"><i class="far fa-circle"></i> Create Telecalling Project</a></li>
-
-            </ul>
-        </li>
         <li id="managers"><a href="{{route('admin.managers')}}"><i class="far fa-user"></i> Managers</a></li>
         <li id="employers"><a href="{{route('admin.employers')}}"><i class="fa fa-building"></i> Employers</a></li>
 

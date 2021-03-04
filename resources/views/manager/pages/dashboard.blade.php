@@ -3,9 +3,11 @@
 @section('content')
 <!-- Our Dashbord -->
 <section class="our-dashbord dashbord">
+	@include('includes.manager-sidebar')
+	<div class="page-content p-5" id="content">
+	@include('includes.col-btn')
 		<div class="container">
 			<div class="row">
-        @include('includes.manager-sidebar')
 				<div class="col-sm-12 col-lg-8 col-xl-8">
 					<div class="row">
 						<div class="col-lg-12">
@@ -33,5 +35,6 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</section>
 @endsection

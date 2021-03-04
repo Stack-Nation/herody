@@ -22,7 +22,7 @@ class CreateManagersTable extends Migration
             $table->string('phone');
             $table->bigInteger('team_id');
             $table->string('manager_id');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

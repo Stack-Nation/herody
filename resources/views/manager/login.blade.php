@@ -1,55 +1,45 @@
 @extends('layouts.app')
 @section('title', config('app.name').' | Manager Login')
 @section('content')
-<!-- Mirrored from Viti2 -->
+<!-- Hero Start -->
 <section>
-    <div class="block no-padding  gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner2">
-                        <div class="inner-title2">
-                            <h3>For Managers</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section>
-    <div class="block remove-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="account-popup-area signup-popup-box static">
-                        <div class="account-popup">
-                            <h3>Sign In</h3>
-                            <form action="{{route('manager.login')}}" method="POST">
-                                @csrf
-                                <div class="cfield">
-                                    <input name="username" type="text" placeholder="Username" />
-                                    <i class="fa fa-envelope"></i>
-                                </div>
-                                <div class="cfield">
-                                    <input name="password" type="password" placeholder="Password" />
-                                    <i class="fa fa-key"></i>
-                                </div>
-                                <button type="submit">Sign In</button>
-                            </form>
-                            <div class="extra-login">
-                                <span>Or</span>
-                                <div class="sign-info">
-                                    <span class="dark-color d-inline-block line-height-2">Do not Have Account ? <a href="{{ route('employer.for-businesses') }}">Sign Up</a></span>
-                                    
-                                </div>
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="login-page bg-white shadow rounded p-4">
+                            <div class="text-center">
+                                <h4 class="mb-4">Manager Login</h4>  
                             </div>
-                        </div>
-                    </div><!-- SIGNUP POPUP -->
-                </div>
-            </div>
+                            <form class="login-form" action="{{route('manager.login')}}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group position-relative">
+                                            <label>Your Username <span class="text-danger">*</span></label>
+                                            <input name="username" type="text" placeholder="Username" class="form-control" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-group position-relative">
+                                            <label>Password <span class="text-danger">*</span></label>
+                                            <input name="password" type="password" placeholder="Password" class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-0">
+                                        <button class="btn btn-primary w-100">Sign in</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!---->
+                    </div> <!--end col-->
+                </div><!--end row-->
+            </div> <!--end container-->
         </div>
     </div>
-</section>
+</section><!--end section-->
+<!-- Hero End -->
 @endsection

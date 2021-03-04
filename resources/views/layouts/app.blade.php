@@ -58,7 +58,7 @@
     <section class="section">
         @yield('content')
     </section>
-    @if(!Request::is("user*") and !Request::is("company*"))
+    @if(!Request::is("user*") and !Request::is("company*") and !Request::is("manager*"))
     @include('includes.footer')
     @endif
 
