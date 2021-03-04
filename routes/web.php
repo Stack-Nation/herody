@@ -110,12 +110,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('for-businesses','Employer\HomeController@to_register')->name('employer.for-businesses');
 Route::post('for-businesses','Employer\HomeController@register')->name('employer.register');
 Route::get('business/login','Employer\HomeController@to_login')->name('employer.login');
-Route::get('employer/verify-email','Employer\HomeController@resendemail')->name('employer.verify.email')->middleware(['employerAuth']);
-Route::post('employer/verify-email','Employer\HomeController@brand')->name('employer.verify.emailr')->middleware(['employerAuth']);
-Route::get('employer/brand','Employer\DashboardController@brand')->name('employer.brand')->middleware(['employerAuth','empEmail']);
-Route::post('employer/brand','Employer\DashboardController@savecompany')->name('employer.save.company')->middleware(['employerAuth','empEmail']);
+Route::get('company/verify-email','Employer\HomeController@resendemail')->name('employer.verify.email')->middleware(['employerAuth']);
+Route::post('company/verify-email','Employer\HomeController@brand')->name('employer.verify.emailr')->middleware(['employerAuth']);
+Route::get('company/brand','Employer\DashboardController@brand')->name('employer.brand')->middleware(['employerAuth','empEmail']);
+Route::post('company/brand','Employer\DashboardController@savecompany')->name('employer.save.company')->middleware(['employerAuth','empEmail']);
 Route::post('business/login','Employer\HomeController@login')->name('employer.login');
-Route::get('employer/logout','Employer\HomeController@logout')->name('employer.logout')->middleware(['employerAuth']);
+Route::get('company/logout','Employer\HomeController@logout')->name('employer.logout')->middleware(['employerAuth']);
 
 // Truecaller
 Route::post('truecaller','TrueCallerController@login')->name('truecaller.login');
@@ -125,7 +125,7 @@ Route::post('/getstates','WorldController@states')->name('world.states');
 Route::post('getcities','WorldController@cities')->name('world.cities');
 
 // Employer
-Route::middleware(['employerAuth','empEmail','BrandCheck'])->namespace('Employer')->prefix('employer')->name('employer.')->group(function(){
+Route::middleware(['employerAuth','empEmail','BrandCheck'])->namespace('Employer')->prefix('company')->name('employer.')->group(function(){
     Route::get('dashboard','DashboardController@dashboard')->name('dashboard');
     Route::get('profile','DashboardController@profile')->name('profile');
     Route::post('profile','DashboardController@update_profile')->name('profile');
@@ -133,83 +133,40 @@ Route::middleware(['employerAuth','empEmail','BrandCheck'])->namespace('Employer
     Route::get('change-pass','DashboardController@change_passr')->name('changepass');
     Route::post('change-pass','DashboardController@change_pass')->name('changepass');
     
-    Route::get('projects','JobController@manage')->name('job.manage');
-    Route::get('projects/post','JobController@postr')->name('job.post');
-    Route::post('projects/post','JobController@post')->name('job.post');
-    Route::post('projects/post/benefits','JobController@postbene')->name('job.benefits');
-    Route::get('projects/post/confirmation','JobController@confirmation')->name('job.confirmation');
-    Route::get('project/edit/{id}','JobController@editr')->name('job.edit');
-    Route::post('project/edit/{id}','JobController@edit')->name('job.edit');
-    Route::get('project/delete/{id}','JobController@delete')->name('job.delete');
-    Route::get('project/applications/{id}','JobController@applications')->name('job.applications');
-    Route::get('project/applications/{id}/shortlisteds','JobController@shortlisteds')->name('job.shortlisteds');
-    Route::get('project/applications/{id}/shortlist/{uid}','JobController@shortlist')->name('job.shortlist');
-    Route::post('project/applications/shortlistall','JobController@shortlistall')->name('job.shortlistall');
-    Route::get('project/applications/{id}/reject/{uid}','JobController@reject')->name('job.reject');
-    Route::post('project/applications/rejectall','JobController@rejectall')->name('job.rejectall');
-    Route::get('project/applications/{id}/select/{uid}','JobController@select')->name('job.select');
-    Route::post('project/applications/selectall','JobController@selectall')->name('job.selectall');
-    Route::get('project/applications/{id}/selecteds','JobController@selecteds')->name('job.selecteds');
-    Route::get('project/applications/{jid}/{uid}/issue_certificate','JobController@issue_certificate')->name('job.issue_certificate');
-    Route::post('project/applications/{jid}/payout','JobController@payout')->name('job.payout');
-    Route::get('project/applications/{jid}/{uid}/proofs','JobController@proofs')->name('job.proofs');
-    Route::get('project/{id}/download-proofs','JobController@export_excel')->name('job.eproof');
-    Route::get('project/applications/{jid}/{uid}/answers','JobController@answers')->name('job.answers');
-    Route::get('project/{id}/exportapps','JobController@exportapps')->name('job.exportapps');
-    Route::get('project/{id}/exportsl','JobController@exportsl')->name('job.exportsl');
-
-    Route::get('gigs','GigController@manage')->name('campaign.manage');
-    Route::get('gigs/create','GigController@creater')->name('campaign.create');
-    Route::post('gigs/create','GigController@create')->name('campaign.create');
-    Route::get('gig/{id}/applications','GigController@applications')->name('gig.applications');
-    Route::post('gig/delete','GigController@delete')->name('gig.delete');
-    Route::get('gig/{jid}/applications/{uid}/approve','GigController@approveApp')->name('campaign.approve');
-    Route::get('gig/{jid}/applications/{uid}/reject','GigController@rejectApp')->name('campaign.reject');
-    Route::get('gig/{jid}/applications/{uid}/view-proof','GigController@viewproof')->name('campaign.viewproof');
-    Route::get('gig/{jid}/applications/{uid}/view-proof/accept','GigController@acceptproof')->name('campaign.acceptproof');
-    Route::get('gig/{jid}/applications/{uid}/view-proof/reject','GigController@rejectproof')->name('campaign.rejectproof');
-    Route::get('gig/{id}/download-proofs','GigController@export_excel')->name('campaign.eproof');
-    Route::get('gig/{id}/edit','GigController@edit')->name('gig.edit');
-    Route::post('gig/{id}/editp','GigController@editp')->name('gig.editp');
-    Route::get('gig/{id}/exportapps','GigController@exportapps')->name('gig.exportapps');
-    
-    // Campaigns
-    Route::get('campaigns','CampaignController@index')->name('missions');
-    Route::post('campaign/delete','CampaignController@delete')->name('mission.delete');
-    Route::get('campaign/applications/{id}','CampaignController@applications')->name('mission.applications');
-    Route::get('campaign/applications/accept/{id}','CampaignController@accept')->name('mission.accept');
-    Route::get('campaign/applications/reject/{id}','CampaignController@reject')->name('mission.reject');
-    Route::get('campaign/response/{id}','CampaignController@response')->name('mission.response');
-    Route::post('campaign/response/accept','CampaignController@acceptResp')->name('mission.acceptResp');
-    Route::post('campaign/response/reject','CampaignController@rejectResp')->name('mission.rejectResp');
+    Route::get('works','JobController@manage')->name('work.manage');
+    Route::get('works/post','JobController@postr')->name('work.post');
+    Route::post('works/post','JobController@post')->name('work.post');
+    Route::get('work/edit/{id}','JobController@editr')->name('work.edit');
+    Route::post('work/edit/{id}','JobController@edit')->name('work.edit');
+    Route::get('work/delete/{id}','JobController@delete')->name('work.delete');
+    Route::get('work/applications/{id}','JobController@applications')->name('work.applications');
+    Route::get('work/applications/{id}/shortlisteds','JobController@shortlisteds')->name('work.shortlisteds');
+    Route::get('work/applications/{id}/shortlist/{uid}','JobController@shortlist')->name('work.shortlist');
+    Route::post('work/applications/shortlistall','JobController@shortlistall')->name('work.shortlistall');
+    Route::get('work/applications/{id}/reject/{uid}','JobController@reject')->name('work.reject');
+    Route::post('work/applications/rejectall','JobController@rejectall')->name('work.rejectall');
+    Route::get('work/applications/{id}/select/{uid}','JobController@select')->name('work.select');
+    Route::post('work/applications/selectall','JobController@selectall')->name('work.selectall');
+    Route::get('work/applications/{id}/selecteds','JobController@selecteds')->name('work.selecteds');
+    Route::get('work/applications/{jid}/{uid}/issue_certificate','JobController@issue_certificate')->name('work.issue_certificate');
+    Route::post('work/applications/{jid}/payout','JobController@payout')->name('work.payout');
+    Route::get('work/applications/{jid}/{uid}/proofs','JobController@proofs')->name('work.proofs');
+    Route::get('work/{id}/download-proofs','JobController@export_excel')->name('work.eproof');
+    Route::get('work/applications/{jid}/{uid}/answers','JobController@answers')->name('work.answers');
+    Route::get('work/{id}/exportapps','JobController@exportapps')->name('work.exportapps');
+    Route::get('work/{id}/exportsl','JobController@exportsl')->name('work.exportsl');
 });
 Route::get('employer/email-not-verified',function(){
     return view('employer.pages.text_email_verify');
 })->name('employer.email.verify');
 
 // Project
-Route::get('projects','ProjectController@list')->name('projects');
-Route::get('project/{id}','ProjectController@details')->name('job.details');
-Route::post('project/apply','ProjectController@apply')->name('job.apply');
-Route::post('project/location','ProjectController@loc')->name('job.location');
-Route::post('project/category','ProjectController@cat')->name('job.cat');
-Route::post('project/proof','ProjectController@proofs')->name('job.proof');
-
-// Gigs
-Route::get('gigs','GigController@list')->name('gigs');
-Route::get('gig/details/{id}','GigController@details')->name('campaign.details');
-Route::post('gig/details/apply','GigController@apply')->name('campaign.apply');
-Route::get('gigs/cat/{id}','GigController@cats')->name('campaign.cat');
-
-// Gig proofs
-Route::post('gig/proof/fb','GigController@prooffb')->name('campaign.prooffb');
-Route::post('gig/proof/wa','GigController@proofwa')->name('campaign.proofwa');
-Route::post('gig/proof/insta','GigController@proofinsta')->name('campaign.proofinsta');
-Route::post('gig/proof/yt','GigController@proofyt')->name('campaign.proofyt');
-Route::post('gig/proof/instap','GigController@proofinstap')->name('campaign.proofinstap');
-Route::post('gig/proof/os','GigController@proofos')->name('campaign.proofos');
-Route::post('gig/proof/ar','GigController@proofar')->name('campaign.proofar');
-Route::post('gig/proof/ls','GigController@proofls')->name('campaign.proofls');
+Route::get('works','ProjectController@list')->name('works');
+Route::get('work/{id}','ProjectController@details')->name('work.details');
+Route::post('work/apply','ProjectController@apply')->name('work.apply');
+Route::post('work/location','ProjectController@loc')->name('work.location');
+Route::post('work/category','ProjectController@cat')->name('work.cat');
+Route::post('work/proof','ProjectController@proofs')->name('work.proof');
 
 // Applicant View
 Route::get('users/{id}','JobController@selecteds')->name('applicant.view');
@@ -248,10 +205,6 @@ Route::middleware(['auth','verified'])->namespace('User')->prefix('user')->name(
     Route::get('logout','DashboardController@logout')->name('logout');
 
     Route::get('projects','DashboardController@projects')->name('projects.show');
-
-    Route::get('gigs','DashboardController@gigs')->name('gigs.show');
-
-    Route::get('campaigns','DashboardController@campaigns')->name('campaigns.show');
 });
 
 //User View

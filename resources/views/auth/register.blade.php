@@ -14,14 +14,14 @@ if(isset($_GET['code']))
                 <div class="col-md-6">
                     <div class="login_page bg-white shadow rounded p-4">
                         <div class="text-center">
-                            <h4 class="mb-4">Student Register</h4>  
+                            <h4 class="mb-4">Worker Register</h4>  
                         </div>
                         <form class="login-form" action="{{route('register')}}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group position-relative">                                               
-                                        <label>First name <span class="text-danger">*</span></label>
+                                        <label>Name <span class="text-danger">*</span></label>
                                         <input name="name" type="text" class="form-control" placeholder="Full Name" />
                                     </div>
                                 </div>

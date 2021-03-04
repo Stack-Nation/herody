@@ -18,7 +18,7 @@
 								<div class="detais">
 									<div class="timer">{{$user->jobs->count()}}</div>
 									<p>Projects Applied</p>
-									<p><a href="{{route('user.projects.show')}}">View</a></p>
+									{{-- <p><a href="{{route('user.projects.show')}}">View</a></p> --}}
 								</div>
 							</div>
 						</div>
@@ -28,7 +28,7 @@
 								<div class="detais">
 									<div class="timer">{{$user->gigs->count()}}</div>
 									<p>Gigs Applied</p>
-									<p><a href="{{route('user.gigs.show')}}">View</a></p>
+									{{-- <p><a href="{{route('user.gigs.show')}}">View</a></p> --}}
 								</div>
 							</div>
 						</div>

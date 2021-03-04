@@ -2,7 +2,7 @@
     $states = DB::table('states')->where('country_id','101')->orderBy('name','asc')->get();
 ?>
 @extends('layouts.app')
-@section('title',config('app.name').' | profile')
+@section('title',config('app.name').' | Profile')
 @section("heads")
 <style>
 #btndp{

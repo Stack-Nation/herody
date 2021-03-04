@@ -10,6 +10,7 @@
     <meta name="author" content="Themesdesign" />
 
     <link rel="shortcut icon" href="images/favicon.ico">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{asset("assets/main/css/bootstrap.min.css")}}" type="text/css">
@@ -57,7 +58,7 @@
     <section class="section">
         @yield('content')
     </section>
-    @if(!Request::is("user*"))
+    @if(!Request::is("user*") and !Request::is("company*"))
     @include('includes.footer')
     @endif
 

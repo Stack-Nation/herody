@@ -1,6 +1,3 @@
-<?php
-    $missions = \App\Campaign::get();
-?>
 @extends('admin.master')
 
 @section('title', 'Admin Dashboard')
@@ -80,19 +77,6 @@
                 <div class="flex-grow-1 bg-white p-4">
                     <a href="{{route('admin.show.withdraw.request')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0"> Withdraw Request</p></a>
                     <h3 class="font-weight-bold mb-0">{{count($withdrawRequest)}}</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="d-flex border">
-                <div class="badge-warning text-light p-4">
-                    <div class="d-flex align-items-center h-100">
-                         <i class="fas fa-3x fa-fw fa-spinner"></i>
-                    </div>
-                </div>
-                <div class="flex-grow-1 bg-white p-4">
-                    <a href="{{route('admin.missions')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0"> Campaigns</p></a>
-                    <h3 class="font-weight-bold mb-0">{{count($missions)}}</h3>
                 </div>
             </div>
         </div>

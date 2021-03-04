@@ -25,7 +25,7 @@ class CreateEmployersTable extends Migration
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('zip_code')->nullable();
-            $table->string('founded')->nullable();
+            $table->string('cin')->nullable();
             $table->string('profile_photo')->nullable();
             $table->longText('description')->nullable();
             $table->string('pan')->nullable();

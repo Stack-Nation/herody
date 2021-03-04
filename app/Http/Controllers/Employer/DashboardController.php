@@ -78,7 +78,7 @@ class DashboardController extends Controller
             'phone' => 'required',
             'category' => 'required',
             'website' => 'nullable',
-            'founded' => 'required',
+            'cin' => 'required',
             'description' => 'required',
             'gstin' => 'required',
             'pan' => 'required',
@@ -100,7 +100,7 @@ class DashboardController extends Controller
         $em->email = $request->input('email');
         $em->phone = $request->input('phone');
         $em->category = $request->input('category');
-        $em->founded = $request->input('founded');
+        $em->cin = $request->input('cin');
         $em->website = $request->input('website');
         $em->description = $request->input('description');
         $em->pan = $request->input('pan');

@@ -11,7 +11,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="login-page bg-white shadow rounded p-4">
                             <div class="text-center">
-                                <h4 class="mb-4">Student Login</h4>  
+                                <h4 class="mb-4">Worker Login</h4>  
                             </div>
                             <form class="login-form" action="{{route('login')}}" method="POST">
                                 @csrf

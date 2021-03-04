@@ -1,12 +1,13 @@
 @extends('layouts.app')
 @section('title',config('app.name').' | Change Password')
-
 @section('content')
 
 <section class="our-dashbord dashbord">
+  @include('includes.emp-sidebar')
+  <div class="page-content p-5" id="content">
+    @include('includes.col-btn')
     <div class="container">
       <div class="row">
-        @include('includes.emp-sidebar')
         <div class="col-sm-12 col-lg-8 col-xl-9">
           
           <div class="card">
@@ -52,5 +53,6 @@
       <!-- Footer -->
      
     </div>
+  </div>
 </section>
 @endsection

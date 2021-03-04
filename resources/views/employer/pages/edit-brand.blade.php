@@ -13,22 +13,20 @@
             <form action="{{route('employer.save.company')}}" method="POST" enctype="multipart/form-data">
             @csrf
                 <div class="form-group mb-3">
-                    <span for="cname">Company Name <small>Cannot be changed later</small></span>
+                    <label for="cname">Company Name <small>Cannot be changed later</small></label>
                     <input type="text" class="form-control" name="cname" value="{{$emp->cname}}">
                 </div>
-                <div class="form-group mb-3 float-left">
+                <div class="form-group mb-3">
                     <input type="file" name="profile_image" id="clg_inp" accept=".png,.jpg,.jpeg" onchange="getn(this.value)" hidden>
                     <button type="button" class="btn btn-warning" onclick="document.getElementById('clg_inp').click();">Upload Company Logo</button>
                     <div id="img"></div>
-                </div><br><br><br><br><br>
-                <br>
-                
-                <div class="form-group mb-3">
-                    <span for="description">Company Description</span>
-                    <textarea name="description">{{$emp->description}}</textarea>
                 </div>
                 <div class="form-group mb-3">
-                    <span for="website">Company Website</span>
+                    <label for="description">Company Description</label>
+                    <textarea id="description" name="description">{{$emp->description}}</textarea>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="website">Company Website</label>
                     <input type="text" class="form-control" name="website" value="{{$emp->website}}">
                 </div>
                 <button class="btn btn-primary">Submit</button>
