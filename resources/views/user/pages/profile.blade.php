@@ -50,7 +50,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <span class="form-control-label" for="phone">@lang('Phone No')</span>
-                                    <input type="text" name="phone" class="form-control" placeholder="Your phone" value="{{ $user->phone }}" required>
+                                    <input type="tel" name="phone" class="form-control" placeholder="Your phone" value="{{ $user->phone }}" required>
                                 </div>
                             </div>
                             <div class="col-lg-6">

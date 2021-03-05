@@ -31,10 +31,30 @@
           <div id="navigation">
               <!-- Navigation Menu-->   
               <ul class="navigation-menu">
-                  <li @if(Request::route()->getName()==="index") class="active" @endif><a href="{{route("index")}}">Home</a></li>
+                  <li @if(Request::route()->getName()==="index") class="active" @endif>
+                    <a href="{{route("index")}}">Home</a>
+                  </li>
+                  <li @if(Request::route()->getName()==="works") class="active" @endif>
+                    <a href="{{route("works")}}">Works</a>
+                  </li>
                   @if(!Auth::check() and !Auth::guard('employer')->check() and !Auth::guard('manager')->check())
                   <li>
                     <a href="{{route('register')}}">Register</a>
+                  </li>
+                  @endif
+                  @if(Auth::check())
+                  <li>
+                    <a href="{{route('user.dashboard')}}">Worker Dashboard</a>
+                  </li>
+                  @endif
+                  @if(Auth::guard('employer')->check())
+                  <li>
+                    <a href="{{route('employer.dashboard')}}">Company Dashboard</a>
+                  </li>
+                  @endif
+                  @if(Auth::guard('manager')->check())
+                  <li>
+                    <a href="{{route('manager.dashboard')}}">Manager Dashboard</a>
                   </li>
                   @endif
               </ul><!--end navigation menu-->

@@ -11,12 +11,8 @@ class Employer extends Authenticatable
     use Notifiable;
     protected $guard = 'employers';
     protected $table = 'employers';
-    public function projects()
+    public function works()
     {
-        return $this->hasMany('App\Project', 'user');
-    }
-    public function gigs()
-    {
-        return $this->hasMany('App\Gig', 'user_id');
+        return $this->hasMany('App\Work', 'user_id');
     }
 }

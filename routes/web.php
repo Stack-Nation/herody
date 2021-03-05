@@ -55,12 +55,12 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
     Route::resource('campaign_category', 'CampaignCategoryController');
 
     //Projects
-    Route::get('pending-project', 'JobController@pending')->name('job.pending');
-    Route::get('all-project', 'JobController@all')->name('job.all');
-    Route::post('approve-project', 'JobController@approve')->name('job.approve');
-    Route::post('delete-project', 'JobController@delete')->name('job.delete');
-    Route::post('project/make-mobile', 'JobController@makeMobile')->name('job.make-mobile');
-    Route::post('project/undo-mobile', 'JobController@undoMobile')->name('job.undo-mobile');
+    Route::get('pending-project', 'WorkController@pending')->name('job.pending');
+    Route::get('all-project', 'WorkController@all')->name('job.all');
+    Route::post('approve-project', 'WorkController@approve')->name('job.approve');
+    Route::post('delete-project', 'WorkController@delete')->name('job.delete');
+    Route::post('project/make-mobile', 'WorkController@makeMobile')->name('job.make-mobile');
+    Route::post('project/undo-mobile', 'WorkController@undoMobile')->name('job.undo-mobile');
 
     //member manage
     Route::get('member', 'MemberManageController@ShowAllMember')->name('member.all');
@@ -89,7 +89,7 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
     Route::post('withdraw-reject', 'DashboardController@WithdrawReject')->name('withdraw.reject');
 
     // Excel Exports
-    Route::get('project/export','JobController@export_excel')->name('project.export');
+    Route::get('project/export','WorkController@export_excel')->name('project.export');
     Route::get('gig/export','CampaignController@export_excel')->name('gig.export');
     Route::get('gig/export/apps/{id}','CampaignController@export_apps')->name('gig.apps.export');
     Route::get('withdraw/export','WithdrawController@export_excel')->name('withdraw.export');
@@ -133,40 +133,28 @@ Route::middleware(['employerAuth','empEmail','BrandCheck'])->namespace('Employer
     Route::get('change-pass','DashboardController@change_passr')->name('changepass');
     Route::post('change-pass','DashboardController@change_pass')->name('changepass');
     
-    Route::get('works','JobController@manage')->name('work.manage');
-    Route::get('works/post','JobController@postr')->name('work.post');
-    Route::post('works/post','JobController@post')->name('work.post');
-    Route::get('work/edit/{id}','JobController@editr')->name('work.edit');
-    Route::post('work/edit/{id}','JobController@edit')->name('work.edit');
-    Route::get('work/delete/{id}','JobController@delete')->name('work.delete');
-    Route::get('work/applications/{id}','JobController@applications')->name('work.applications');
-    Route::get('work/applications/{id}/shortlisteds','JobController@shortlisteds')->name('work.shortlisteds');
-    Route::get('work/applications/{id}/shortlist/{uid}','JobController@shortlist')->name('work.shortlist');
-    Route::post('work/applications/shortlistall','JobController@shortlistall')->name('work.shortlistall');
-    Route::get('work/applications/{id}/reject/{uid}','JobController@reject')->name('work.reject');
-    Route::post('work/applications/rejectall','JobController@rejectall')->name('work.rejectall');
-    Route::get('work/applications/{id}/select/{uid}','JobController@select')->name('work.select');
-    Route::post('work/applications/selectall','JobController@selectall')->name('work.selectall');
-    Route::get('work/applications/{id}/selecteds','JobController@selecteds')->name('work.selecteds');
-    Route::get('work/applications/{jid}/{uid}/issue_certificate','JobController@issue_certificate')->name('work.issue_certificate');
-    Route::post('work/applications/{jid}/payout','JobController@payout')->name('work.payout');
-    Route::get('work/applications/{jid}/{uid}/proofs','JobController@proofs')->name('work.proofs');
-    Route::get('work/{id}/download-proofs','JobController@export_excel')->name('work.eproof');
-    Route::get('work/applications/{jid}/{uid}/answers','JobController@answers')->name('work.answers');
-    Route::get('work/{id}/exportapps','JobController@exportapps')->name('work.exportapps');
-    Route::get('work/{id}/exportsl','JobController@exportsl')->name('work.exportsl');
+    Route::get('works','WorkController@index')->name('work.manage');
+    Route::get('works/post','WorkController@create')->name('work.post');
+    Route::post('works/post','WorkController@store')->name('work.post');
+    Route::post('works/delete','WorkController@delete')->name('work.delete');
+    Route::get('works/edit/{id}','WorkController@edit')->name('work.edit');
+    Route::post('works/edit/{id}','WorkController@update')->name('work.edit');
+    Route::get('works/applications/{id}','WorkController@applications')->name('work.applications');
+    Route::post('works/shortlist/{id}','WorkController@shortlist')->name('work.shortlist');
+    Route::post('works/select/{id}','WorkController@select')->name('work.select');
+    Route::post('works/reject/{id}','WorkController@reject')->name('work.reject');
 });
 Route::get('employer/email-not-verified',function(){
     return view('employer.pages.text_email_verify');
 })->name('employer.email.verify');
 
 // Project
-Route::get('works','ProjectController@list')->name('works');
-Route::get('work/{id}','ProjectController@details')->name('work.details');
-Route::post('work/apply','ProjectController@apply')->name('work.apply');
-Route::post('work/location','ProjectController@loc')->name('work.location');
-Route::post('work/category','ProjectController@cat')->name('work.cat');
-Route::post('work/proof','ProjectController@proofs')->name('work.proof');
+Route::get('works','WorkController@list')->name('works');
+Route::get('work/{id}/{name}','WorkController@details')->name('work.details');
+Route::post('work/category','WorkController@cat')->name('work.cat');
+Route::middleware(["auth"])->group(function(){
+    Route::post('work/apply','WorkController@apply')->name('work.apply');
+});
 
 // Applicant View
 Route::get('users/{id}','JobController@selecteds')->name('applicant.view');
@@ -204,7 +192,7 @@ Route::middleware(['auth','verified'])->namespace('User')->prefix('user')->name(
     Route::post('withdraw-confirm', 'DashboardController@WithdrawConfirm')->name('withdraw_confirm');
     Route::get('logout','DashboardController@logout')->name('logout');
 
-    Route::get('projects','DashboardController@projects')->name('projects.show');
+    Route::get('works','WorkController@works')->name('works.show');
 });
 
 //User View
