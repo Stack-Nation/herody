@@ -25,7 +25,7 @@
 				<div class="list-grid-item rounded">
 					<div class="grid-item-content p-3">
 						<ul class="list-inline mb-0">
-							<li class="list-inline-item f-15"><span class="badge badge-{{$application->status===0?"info":($application->status===1?"primary":($application->status===2?"success":($application->status===3?"danger":"")))}}">{{$application->status===0?"Applied":($application->status===1?"Shortlisted":($application->status===2?"Selected":($application->status===3?"Rejected":"")))}}</span></li>
+							<li class="list-inline-item f-15"><span class="badge badge-{{$application->status===0?"info":($application->status===1?"primary":($application->status===2?"success":($application->status===3?"danger":($application->status===4?"secondary":""))))}}">{{$application->status===0?"Applied":($application->status===1?"Shortlisted":($application->status===2?"Selected":($application->status===3?"Rejected":($application->status===4?"Paid":""))))}}</span></li>
 						</ul>
 						<div class="grid-list-img mt-3">
 							<img src="@if($application->worker->profile_photo==NULL) {{asset('assets/user/images/frontEnd/demo.png')}} @else {{asset('assets/user/images/user_profile/'.$application->worker->profile_photo)}} @endif" alt="" class="img-fluid d-block avatar avatar-small mr-3 rounded-pill">
@@ -72,6 +72,11 @@
 							<div class="col-md-4">
 								<a class="btn btn-secondary btn-sm" href="{{route("employer.work.files",$application->id)}}">View Files</a>
 							</div>
+							@if($application->status!==4)
+							<div class="col-md-4">
+								<button class="btn btn-success btn-sm" onclick="acceptWork('{{$application->id}}')">Accept Work</button>
+							</div>
+							@endif
 							@endif
 						</div>
 					</div>
@@ -111,6 +116,37 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="accept" tabindex="-1" role="dialog" aria-labelledby="accept">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="acceptLabel">Accept Work</h4>
+            </div>
+                <div class="modal-body">
+                    <form action="{{route("employer.work.accept")}}" method="post">
+                        @csrf
+						<input type="hidden" id="modalid" name="id">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="amount">Enter amount to pay</label>
+                                    <input type="number" class="form-control" name="amount" placeholder="Amount">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-primary">Pay</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 @section('scripts')
 	<script>
@@ -120,6 +156,10 @@
 				$(`#ans${a}`).val(key);
 			});
 			$("#answers").modal("show");
+		}
+		function acceptWork(id){
+			$("#modalid").val(id);
+			$("#accept").modal("show");
 		}
 	</script>
 @endsection

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Employer;
 use App\Application;
 use App\Work;
+use App\CompanyTransactions as CT;
+use App\UserTransaction as UT;
 use App\Certificate;
 use App\Mail\certificate_mail;
 use Illuminate\Support\Facades\Mail;
@@ -157,6 +159,7 @@ class WorkController extends Controller
                         }
                     }
                 }
+                $applications->delete();
                 $work->delete();
                 $request->session()->flash('success', "Work deleted");
                 return redirect()->back();
@@ -329,6 +332,57 @@ class WorkController extends Controller
                 return view("employer.works.files")->with([
                     "work"=>$work,
                 ]);
+            }
+        }
+    }
+    public function accept(Request $request){
+        $this->validate($request,[
+            "id" => "required",
+            "amount" => "required",
+        ]);
+        $work = Application::find($request->id);
+        if($work===NULL){
+            abort(404);
+        }
+        else{
+            if($work->work->user_id!==Auth::guard("employer")->id()){
+                abort(404);
+            }
+            else{
+                $employer = Employer::find(Auth::guard("employer")->id());
+                if($employer->wallet<$request->amount){
+                    $request->session()->flash('error', "You do not have sufficient balance to pay the worker. Please add money in the wallet first");
+                    return redirect()->back();
+                }
+                else{
+                    $user = User::find($work->user_id);
+    
+                    $utransaction = new UT;
+                    $utransaction->transaction_id = rand(0,99999).rand(0,99999).rand(0,99999).rand(0,99999).rand(0,99999);
+                    $utransaction->user_id = $user->id;
+                    $utransaction->type = "INC";
+                    $utransaction->amount = $request->amount;
+                    $utransaction->reason = "Paid for completing work ".$work->work->name;
+                    $utransaction->save();
+                    $user->balance = $user->balance + $request->amount;
+                    $user->save();
+        
+                    $transaction = new CT;
+                    $transaction->transaction_id = rand(0,99999).rand(0,99999).rand(0,99999).rand(0,99999).rand(0,99999);
+                    $transaction->user_id = Auth::guard("employer")->id();
+                    $transaction->type = "DEC";
+                    $transaction->amount = $request->amount;
+                    $transaction->reason = "Paid to ".$user->name." for completing work ".$work->work->name;
+                    $transaction->save();
+                    $employer->wallet = $employer->wallet - $request->amount;
+                    $employer->save();
+
+                    $work->status = 4;
+                    $work->save();
+                    
+                    $request->session()->flash('success', "Worker paid successfully");
+                    return redirect()->back();
+                }
             }
         }
     }

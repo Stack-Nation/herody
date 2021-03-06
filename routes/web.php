@@ -118,6 +118,11 @@ Route::middleware(['employerAuth','empEmail','BrandCheck'])->namespace('Employer
     Route::post('works/select/{id}','WorkController@select')->name('work.select');
     Route::post('works/reject/{id}','WorkController@reject')->name('work.reject');
     Route::get('works/files/{id}','WorkController@files')->name('work.files');
+    Route::post('works/accept','WorkController@accept')->name('work.accept');
+    
+    Route::get('wallet','WalletController@index')->name('wallet');
+    Route::post('wallet/add','WalletController@addMoney')->name('wallet.add');
+    Route::post('wallet/add/done/{amount}','WalletController@doneMoney')->name('wallet.add.done');
 });
 Route::get('employer/email-not-verified',function(){
     return view('employer.pages.text_email_verify');
@@ -160,11 +165,8 @@ Route::middleware(['auth','verified'])->namespace('User')->prefix('user')->name(
     Route::get('change-pass','DashboardController@changepwr')->name('changePassword');
     Route::post('change-pass','DashboardController@updatePassword')->name('changePassword');
 
-    // Withdraw
-    Route::get('withdraw','DashboardController@ShowWithdrawMethod')->name('withdraw');
-    Route::get('withdraw-log', 'DashboardController@ShowWithdrawLog')->name('show_withdraw_log');
-    Route::post('withdraw-preview', 'DashboardController@WithdrawPreview')->name('withdraw_preview');
-    Route::post('withdraw-confirm', 'DashboardController@WithdrawConfirm')->name('withdraw_confirm');
+    // Wallet
+    Route::get('wallet','WalletController@index')->name('wallet');
     Route::get('logout','DashboardController@logout')->name('logout');
 
     // Works

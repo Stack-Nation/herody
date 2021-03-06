@@ -41,7 +41,7 @@
 									</div>
 									<div class="col-lg-3 col-md-3">
 										<div class="job-list-button-sm text-right">
-											<span class="badge badge-{{$work->status===0?"info":($work->status===1?"primary":($work->status===2?"success":($work->status===3?"danger":"")))}}">{{$work->status===0?"Applied":($work->status===1?"Shortlisted":($work->status===2?"Selected":($work->status===3?"Rejected":"")))}}</span>
+											<span class="badge badge-{{$work->status===0?"info":($work->status===1?"primary":($work->status===2?"success":($work->status===3?"danger":($work->status===4?"secondary":""))))}}">{{$work->status===0?"Applied":($work->status===1?"Shortlisted":($work->status===2?"Selected":($work->status===3?"Rejected":($work->status===4?"Paid":"Work Submitted"))))}}</span>
 											@if($work->status===2)
 											<div class="mt-3">
 												<a href="{{route("user.works.work",$work->id)}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>

@@ -20,6 +20,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/ipnpaypal','/ipncoin','/ipncoinpaybtc','/ipnperfect','/ipnskrill','/ipnstripe','/ipncoinpayeth','/ipncoinpaybch',
-        '/ipncoinpaydash','/ipncoinpaydoge','/ipncoinpayltc','/ipncoingate','/deposit-pay','/ipnpaytm','/ipnpayeer','/ipnpaystack','/ipnvoguepay','/truecaller'
+        '/ipncoinpaydash','/ipncoinpaydoge','/ipncoinpayltc','/ipncoingate','/deposit-pay','/ipnpaytm','/ipnpayeer','/ipnpaystack','/ipnvoguepay','/truecaller','/company/wallet/add/done/*'
     ];
 }
