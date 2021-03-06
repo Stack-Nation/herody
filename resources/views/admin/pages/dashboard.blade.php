@@ -74,8 +74,21 @@
                     </div>
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
-                    <a href="{{route('admin.show.withdraw.request')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0"> Withdraw Request</p></a>
+                    <a href="{{route('admin.withdrawals.pending')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0"> Withdraw Request</p></a>
                     <h3 class="font-weight-bold mb-0">{{count($withdrawRequest)}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="d-flex border">
+                <div class="customs_bd text-light p-4">
+                    <div class="d-flex align-items-center h-100">
+                         <i class="fa fa-3x fa-fw fa-list"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1 bg-white p-4">
+                    <a href="{{route('admin.withdrawals.approved')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0"> Approved Withdraws</p></a>
+                    <h3 class="font-weight-bold mb-0">{{count($withdraws)}}</h3>
                 </div>
             </div>
         </div>

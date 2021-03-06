@@ -23,9 +23,8 @@
             </a>
             <ul id="Withdraw" class="list-unstyled collapse">
 
-                <li><a href="{{route('admin.withdraw.index')}}"><i class="far fa-circle"></i> Withdraw Methods</a></li>
-                <li><a href="{{route('admin.show.withdraw.request')}}"><i class="far fa-circle"></i> Withdraw Requests</a></li>
-                <li><a href="{{route('admin.show.withdraw.log')}}"><i class="far fa-circle"></i> Withdraw Logs</a></li>
+                <li><a href="{{route('admin.withdrawals.pending')}}"><i class="far fa-circle"></i> Withdrawal Requests</a></li>
+                <li><a href="{{route('admin.withdrawals.approved')}}"><i class="far fa-circle"></i> Approved Withdrawals</a></li>
                 <li><a href="{{route('admin.withdraw.export')}}"><i class="far fa-circle"></i> Export all to excel</a></li>
 
             </ul>

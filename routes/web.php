@@ -11,6 +11,41 @@
 |
 */
 
+Route::get('/', function () {
+    $cats = [
+        "SALES & BUSINESS DEVELOPMENT",
+        "PRODUCTION",
+        "MAINTENANCE",
+        "ACCOUNTING AND FINANCE",
+        "ADMIN & HUMAN RESAURCES (HR) MANAGEMENT",
+        "PROCUREMENT & PLANNING",
+        "TESTING & QUALITY",
+        "RESEARCH & DEVELOPMENT (R & D)",
+        "DESIGN",
+        "MARKETING",
+        "TRAINING & DEVELOPMENT",
+        "PURCHASING",
+        "SUPPLY CHAIN MANAGEMENT",
+        "INVENTORY & STORE",
+        "IT & ITES",
+        "ENVIRONMENTAL HEALTH AND SAFETY",
+        "CORPORATE SUPPORT",
+        "ENGINEERING",
+        "ELECTRICAL",
+        "MECHANICAL",
+        "FACILITY MANAGEMENT",
+        "CUSTOMER SERVICE SUPPORT",
+        "CONSULTANT",
+        "EXPERT",
+        "CONTRACTOR",
+        "OTHER",
+    ];
+    $works = App\Work::all()->take(6);
+    return view('welcome')->with([
+        'works' => $works,
+        'cats' => $cats,
+    ]);
+})->name("index");
 Route::get('privacy-policy',function(){
     return view('privacy-policy');
 })->name('privacy-policy');
@@ -45,28 +80,18 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
     Route::get('pending-regs/reject/{id}', 'MemberManageController@reject')->name('member.reject');
     Route::get('member/{id}', 'MemberManageController@ShowMemberDetails')->name('member.details');
     Route::post('member-update', 'MemberManageController@MemberUpdate')->name('member.update');
-
-    Route::get('withdraw-report/{id}', 'MemberManageController@WithdrawReport')->name('member.withdraw_report');
-    Route::get('campaign-report/{id}', 'MemberManageController@CampaignReport')->name('member.campaign_report');
-    Route::get('project-report/{id}', 'MemberManageController@projectReport')->name('member.project_report');
-    Route::get('gig-report/{id}', 'MemberManageController@gigReport')->name('member.gig_report');
     Route::get('member/export/excel', 'MemberManageController@excel_export')->name('member.export');
     Route::get('member/export/referrals', 'MemberManageController@excel_referrals')->name('member.export.referrals');
 
     //Withdraw methods
-    Route::get('withdraw', 'WithdrawController@index')->name('withdraw.index');
-    Route::post('withdraw/store', 'WithdrawController@store')->name('withdraw.store');
-    Route::put('withdraw/update/{id}', 'WithdrawController@update')->name('withdraw.update');
-    Route::delete('withdraw/destroy', 'WithdrawController@destroy')->name('withdraw.destroy');
-
-    Route::get('withdraw-request', 'DashboardController@ShowWithdrawRequest')->name('show.withdraw.request');
-    Route::get('withdraw-log', 'DashboardController@ShowWithdrawLog')->name('show.withdraw.log');
-    Route::post('withdraw-approve', 'DashboardController@WithdrawApproved')->name('withdraw.approve');
-    Route::post('withdraw-reject', 'DashboardController@WithdrawReject')->name('withdraw.reject');
+    Route::get('withdrawals/pending', 'WithdrawalController@pending')->name('withdrawals.pending');
+    Route::post('withdrawals/accept', 'WithdrawalController@accept')->name('withdrawals.accept');
+    Route::post('withdrawals/reject', 'WithdrawalController@reject')->name('withdrawals.reject');
+    Route::get('withdrawals/approved', 'WithdrawalController@approved')->name('withdrawals.approved');
 
     // Excel Exports
     Route::get('work/export','WorkController@export_excel')->name('work.export');
-    Route::get('withdraw/export','WithdrawController@export_excel')->name('withdraw.export');
+    Route::get('withdraw/export','WithdrawalController@export_excel')->name('withdraw.export');
 
     // Employers
     Route::get('employers','EmployerController@index')->name('employers');
@@ -74,9 +99,6 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
 });
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("index");
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -164,10 +186,14 @@ Route::middleware(['auth','verified'])->namespace('User')->prefix('user')->name(
     Route::post('profile','DashboardController@updateProfile')->name('profile');
     Route::get('change-pass','DashboardController@changepwr')->name('changePassword');
     Route::post('change-pass','DashboardController@updatePassword')->name('changePassword');
+    Route::get('logout','DashboardController@logout')->name('logout');
 
     // Wallet
     Route::get('wallet','WalletController@index')->name('wallet');
-    Route::get('logout','DashboardController@logout')->name('logout');
+    Route::get('wallet/accounts','WalletController@accounts')->name('wallet.accounts');
+    Route::post('wallet/withdraw','WalletController@withdraw')->name('wallet.withdraw');
+    Route::post('wallet/accounts/bank','WalletController@addBank')->name('wallet.addBank');
+    Route::post('wallet/accounts/upi','WalletController@addUpi')->name('wallet.addUpi');
 
     // Works
     Route::get('works','WorkController@works')->name('works.show');

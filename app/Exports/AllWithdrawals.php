@@ -4,7 +4,7 @@ namespace App\Exports;
 
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
-use App\WithdrawRequest;
+use App\Withdraw;
 
 class AllWithdrawals implements FromView
 {
@@ -13,7 +13,7 @@ class AllWithdrawals implements FromView
     */
     public function view():View
     {
-        $wrs = WithdrawRequest::get();
+        $wrs = Withdraw::get();
         
         return view('admin.exports.allwithdraws', [
             'wrs' => $wrs,

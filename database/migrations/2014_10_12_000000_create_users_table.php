@@ -39,6 +39,9 @@ class CreateUsersTable extends Migration
             $table->boolean('app_status')->default(false);
             $table->string('ref_code')->nullable();
             $table->bigInteger('ref_by')->nullable();
+            $table->string('razor_contact_id')->nullable();
+            $table->json('bank_acc_id')->nullable();
+            $table->json('upi_acc_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

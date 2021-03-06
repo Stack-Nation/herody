@@ -88,13 +88,15 @@
 
     <script>
         @if(Session()->has('success'))
-
         toastr.success("{{Session('success')}}")
         @endif
 
         @if(Session()->has('warning'))
-
         toastr.warning("{{Session('warning')}}")
+        @endif
+
+        @if(Session()->has('error'))
+        toastr.error("{{Session('error')}}")
         @endif
 
         @if(count($errors)>0)

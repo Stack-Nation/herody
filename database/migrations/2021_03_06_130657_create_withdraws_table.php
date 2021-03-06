@@ -15,9 +15,11 @@ class CreateWithdrawsTable extends Migration
     {
         Schema::create('withdraws', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->mediumText('detail');
-            $table->longText('image');
+            $table->bigInteger('user_id');
+            $table->double('amount', 15, 8);
+            $table->json('details');
+            $table->string('mode');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

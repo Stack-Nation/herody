@@ -24,10 +24,8 @@ class RazorpayController extends Controller
         $contact = $api->contact->create(array(
             "name"=> Auth::user()->name,
             "email"=> Auth::user()->email,
-            
             )
-          );
-
+        );
         $contact_id=$contact->id;
         if($request->acc_type=='bank_account')
         {

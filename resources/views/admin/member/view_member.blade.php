@@ -31,27 +31,6 @@
                             </div>
                         </div>
                         <div class="col-md-9">
-                            <div class="container mb-4"
-                                 style="box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.095); padding: 30px;">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-3">
-                                        <a href="{{route('admin.member.withdraw_report',$userById->id)}}"
-                                           class="btn btn-info">Withdraw Report</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="{{route('admin.member.campaign_report',$userById->id)}}"
-                                           class="btn btn-info">Campaign Report</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="{{route('admin.member.project_report',$userById->id)}}"
-                                           class="btn btn-info">Project Report</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="{{route('admin.member.gig_report',$userById->id)}}"
-                                           class="btn btn-info">Gig Report</a>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="container"
                                  style="box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.095); padding: 30px;">
                                 <div class="row">
