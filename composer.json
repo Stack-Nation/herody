@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5|^8.0",
+        "anandsiddharth/laravel-paytm-wallet": "^1.0.0",
         "fideloper/proxy": "^4.4",
         "intervention/image": "^2.5",
         "jazmy/jaz-form-builder": "dev-master",
@@ -17,7 +18,7 @@
         "maatwebsite/excel": "^3.1",
         "markbaker/complex": "^2.0",
         "phpoffice/phpspreadsheet": "^1.16",
-        "razorpay/razorpay": "2.*"
+        "razorpay/razorpay": "^2.5"
     },
     "require-dev": {
         "facade/ignition": "^1.16.4",

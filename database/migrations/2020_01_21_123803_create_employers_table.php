@@ -38,6 +38,7 @@ class CreateEmployersTable extends Migration
             $table->string('youtube')->nullable();
             $table->string('vimeo')->nullable();
             $table->string('linkedin')->nullable();
+            $table->double('wallet')->default(0);
             $table->boolean('email_verified')->default(false);
             $table->timestamps();
         });
