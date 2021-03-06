@@ -117,6 +117,7 @@ Route::middleware(['employerAuth','empEmail','BrandCheck'])->namespace('Employer
     Route::post('works/shortlist/{id}','WorkController@shortlist')->name('work.shortlist');
     Route::post('works/select/{id}','WorkController@select')->name('work.select');
     Route::post('works/reject/{id}','WorkController@reject')->name('work.reject');
+    Route::get('works/files/{id}','WorkController@files')->name('work.files');
 });
 Route::get('employer/email-not-verified',function(){
     return view('employer.pages.text_email_verify');
@@ -166,7 +167,11 @@ Route::middleware(['auth','verified'])->namespace('User')->prefix('user')->name(
     Route::post('withdraw-confirm', 'DashboardController@WithdrawConfirm')->name('withdraw_confirm');
     Route::get('logout','DashboardController@logout')->name('logout');
 
+    // Works
     Route::get('works','WorkController@works')->name('works.show');
+    Route::get('works/work/{id}','WorkController@work')->name('works.work');
+    Route::post('works/work/{id}/whole','WorkController@whole')->name('works.work.whole');
+    Route::post('works/work/{id}/objective','WorkController@objective')->name('works.work.objective');
 });
 
 //User View

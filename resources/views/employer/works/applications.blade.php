@@ -68,6 +68,11 @@
 							<div class="col-md-4">
 								<button class="btn btn-primary btn-sm" data-answers="{{$application->answers}}" onclick="viewAns(this)">View Answers</button>
 							</div>
+							@if($application->files!==NULL)
+							<div class="col-md-4">
+								<a class="btn btn-secondary btn-sm" href="{{route("employer.work.files",$application->id)}}">View Files</a>
+							</div>
+							@endif
 						</div>
 					</div>
 				</div>

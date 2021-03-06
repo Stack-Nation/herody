@@ -147,7 +147,16 @@ class WorkController extends Controller
                     $path = "assets/work/files/";
                     unlink($path.$obj->file);
                 }
-                Application::where("work_id",$work->id)->delete();
+                $applications = Application::where("work_id",$work->id)->get();
+                foreach($applications as $application){
+                    if($application->files!==NULL){
+                        $files = (array)json_decode($application->files);
+                        $path = "assets/user/work/";
+                        foreach($files as $file){
+                            unlink($path.$file->file);
+                        }
+                    }
+                }
                 $work->delete();
                 $request->session()->flash('success', "Work deleted");
                 return redirect()->back();
@@ -303,6 +312,24 @@ class WorkController extends Controller
         }
         else{
             abort(404);
+        }
+    }
+    public function files($id){
+        $work = Application::find($id);
+        if($work===NULL){
+            abort(404);
+        }
+        else{
+            if($work->work->user_id!==Auth::guard("employer")->id()){
+                abort(404);
+            }
+            else{
+                $work->work->objectives = json_decode($work->work->objectives);
+                $work->files = json_decode($work->files);
+                return view("employer.works.files")->with([
+                    "work"=>$work,
+                ]);
+            }
         }
     }
 }

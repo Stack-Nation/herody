@@ -73,7 +73,7 @@
 											<span class="badge badge-success">{{$work->pricing}}</span>
 
 											<div class="mt-3">
-												<a href="#" class="btn btn-sm btn-primary">Apply</a>
+												<a href="{{route("work.details",[$work->id,md5($work->name)])}}" class="btn btn-sm btn-primary">Apply</a>
 											</div>
 										</div>
 									</div>

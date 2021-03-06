@@ -44,7 +44,7 @@
 											<span class="badge badge-{{$work->status===0?"info":($work->status===1?"primary":($work->status===2?"success":($work->status===3?"danger":"")))}}">{{$work->status===0?"Applied":($work->status===1?"Shortlisted":($work->status===2?"Selected":($work->status===3?"Rejected":"")))}}</span>
 											@if($work->status===2)
 											<div class="mt-3">
-												<a href="{{route("employer.work.edit",$work->id)}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+												<a href="{{route("user.works.work",$work->id)}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
 											</div>
 											@endif
 										</div>
