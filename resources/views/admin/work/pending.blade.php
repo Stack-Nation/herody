@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'Admin | Pending Internships')
+@section('title', 'Admin | Pending Works')
 
 @section('body')
 
@@ -9,42 +9,42 @@
 
         <div class="card mb-4">
             <div class="card-header bg-white font-weight-bold">
-                Pending Internships
+                Pending Works
             </div>
             <div class="card-body">
-                @if(count($pending)==0)
+                @if(count($works)==0)
                     <h2 class="text-center">@lang('No Data Available')</h2>
                 @else
                     <table class="table  table-striped table-bordered">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Title</th>
+                            <th scope="col">Name</th>
                             <th scope="col">Category</th>
-                            <th scope="col">Deadline</th>
-                            <th scope="col">Stipend</th>
+                            <th scope="col">Apply Before</th>
+                            <th scope="col">Price</th>
                             <th scope="col">Number of candidates Required</th>
-                            <th scope="col">Work Place</th>
+                            <th scope="col">Duration</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        @foreach($pending as $pen)
+                        @foreach($works as $work)
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
-                                <td>{{$pen->title}}</td>
-                                <td>{{$pen->cat}}</td>
-                                <td>{{$pen->end}}</td>
-                                <td>{{$pen->stipend}}</td>
-                                <td>{{$pen->count}}</td>
-                                <td>{{$pen->place}}</td>
+                                <td>{{$work->name}}</td>
+                                <td>{{$work->category}}</td>
+                                <td>{{$work->last_apply}}</td>
+                                <td>{{$work->price}}</td>
+                                <td>{{$work->candidates}}</td>
+                                <td>{{$work->duration}}</td>
                                 <td>
 
-                                    <a href="" class="btn btn-danger btn-sm btn-square" data-id="{{$pen->id}}"
+                                    <a href="" class="btn btn-danger btn-sm btn-square" data-id="{{$work->id}}"
                                        data-toggle="modal" data-target="#OrderReject">Reject</a>
 
-                                    <a href="" class="btn btn-info btn-sm btn-square" data-id="{{$pen->id}}"
+                                    <a href="" class="btn btn-info btn-sm btn-square" data-id="{{$work->id}}"
                                        data-toggle="modal"
                                        data-target="#OrderApprove">Approve</a>
                                 </td>
@@ -55,7 +55,7 @@
                         </tbody>
                     </table>
                 @endif
-                {{$pending->links()}}
+                {{$works->links()}}
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel"><i class="fa fa-trash"></i> Approve !</h4>
                 </div>
-                <form action="{{route('admin.job.approve')}}" method="post">
+                <form action="{{route('admin.work.approve')}}" method="post">
                     @csrf
                     <div class="modal-body">
                         <input class="form-control form-control-lg mb-3" type="hidden" name="id" id="id">
@@ -90,7 +90,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel"><i class="fa fa-trash"></i> Reject !</h4>
                 </div>
-                <form action="{{route('admin.job.delete')}}" method="post">
+                <form action="{{route('admin.work.delete')}}" method="post">
                     @csrf
                     <div class="modal-body">
                         <input class="form-control form-control-lg mb-3" type="hidden" name="id" id="id">
@@ -107,8 +107,8 @@
 
     {{--dropdown active--}}
     <script>
-        $('#pending li:nth-child(2)').addClass('active');
-        $('#pending').addClass('show');
+        $('#work li:nth-child(2)').addClass('active');
+        $('#work').addClass('show');
     </script>
 @endsection
 

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Admin;
-use App\Gig;
-use App\PendingGig;
+use App\Work;
 use App\User;
+use App\Employer;
 use App\Withdraw;
 use App\WithdrawRequest;
 use Carbon\Carbon;
@@ -20,9 +20,9 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $pendingCampaigns = PendingGig::get();
-        $InProOrdersCampaigns = Gig::get();
-        $LogCampaigns = Gig::get();
+        $works = Work::where("approved",1)->get();
+        $pendingWorks = Work::where("approved",0)->get();
+        $employers = Employer::get();
         $withdraws = Withdraw::all();
         $withdrawRequest = WithdrawRequest::where('status',0)->get();
         $withdrawLogs = WithdrawRequest::where('status','!=',0)->get();
@@ -31,7 +31,7 @@ class DashboardController extends Controller
         $acUsers = User::where('account_status',1)->get();
         $InAcUsers = User::where('account_status',0)->get();
 
-        return view('admin.pages.dashboard', compact('InAcUsers','acUsers','allUsers','pendingCampaigns','InProOrdersCampaigns', 'withdraws', 'LogCampaigns','withdrawLogs','withdrawRequest'));
+        return view('admin.pages.dashboard', compact('InAcUsers','acUsers','allUsers','works','employers','pendingWorks', 'withdraws','withdrawLogs','withdrawRequest'));
 
     }
 

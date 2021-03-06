@@ -165,11 +165,7 @@
                 <div class="job-detail border rounded mt-4">
                   @if(Auth::check())
                     @if($work->applications->where("user_id",Auth::user()->id)->first()===NULL)
-                      <form action="{{route("work.apply")}}" method="post">
-                        @csrf
-                        <input type="hidden" name="id" value="{{$work->id}}">
-                        <button class="btn btn-primary btn-block">Apply for the work</button>
-                      </form>
+                        <button data-toggle="modal" data-target="#answers" class="btn btn-primary btn-block">Apply for the work</button>
                     @else
                       <a href="" class="btn btn-primary btn-block">You have already applied for the work</a>
                     @endif
@@ -182,4 +178,35 @@
     </div>
 </section>
 <!-- JOB DETAILS END -->
+
+
+<div class="modal fade" id="answers" tabindex="-1" role="dialog" aria-labelledby="answers">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="answersLabel">Answers these questions</h4>
+            </div>
+            <form action="{{route("work.apply")}}" method="post">
+                @csrf
+                <input type="hidden" name="id" value="{{$work->id}}">
+                <div class="modal-body">
+                    @foreach ($work->questions as $question)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group app-label mt-2">
+                                <label class="text-muted">{{$question}}</label>
+                                <input type="text" name="answers[]" required class="form-control resume" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Apply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection

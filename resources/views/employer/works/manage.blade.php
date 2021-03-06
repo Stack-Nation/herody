@@ -41,7 +41,11 @@
 									</div>
 									<div class="col-lg-3 col-md-3">
 										<div class="job-list-button-sm text-right">
+											@if($work->approved===1)
 											<span class="badge badge-success">{{$work->applications->count()}} Application{{$work->applications->count()===1?"":"s"}}</span>
+											@else
+											<span class="badge badge-danger">Approval Pending</span>
+											@endif
 
 											<div class="mt-3 row">
 												<div class="col-md-4">

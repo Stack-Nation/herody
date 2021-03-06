@@ -2,30 +2,15 @@
     <ul class="list-unstyled">
         <li class="active"><a href="{{route('admin.dashboard')}}"><i class="fa fa-home"></i> Dashboard</a></li>
 
-        <li id="activeCampaignCat"><a href="{{route('admin.campaign_category.index')}}"> <i class="fa fa-fw fa-list"> </i> Gig Category</a></li>
-        <li>
-            <a href="#Campaigns" data-toggle="collapse">
-                <i class="fas fa-eye"></i> Gigs
-            </a>
-            <ul id="Campaigns" class="list-unstyled collapse">
-
-                <li><a href="{{route('admin.campaign.all')}}"><i class="far fa-circle"></i> In-progress Gigs</a></li>
-                <li><a href="{{route('admin.campaign.create')}}"><i class="far fa-circle"></i> Create Gigs</a></li>
-                <li><a href="{{route('admin.campaign.pendings')}}"><i class="far fa-circle"></i> Pending Gigs</a></li>
-                <li><a href="{{route('admin.gig.export')}}"><i class="far fa-circle"></i> Export all to excel</a></li>
-
-            </ul>
-        </li>
-
         <li>
             <a href="#Jobs" data-toggle="collapse">
-                <i class="fas fa-briefcase"></i> Internships
+                <i class="fas fa-briefcase"></i> Works
             </a>
             <ul id="Jobs" class="list-unstyled collapse">
 
-                <li><a href="{{route('admin.job.pending')}}"><i class="far fa-circle"></i> Pending Internships</a></li>
-                <li><a href="{{route('admin.job.all')}}"><i class="far fa-circle"></i> All Internships</a></li>
-                <li><a href="{{route('admin.project.export')}}"><i class="far fa-circle"></i> Export all to excel</a></li>
+                <li><a href="{{route('admin.work.pending')}}"><i class="far fa-circle"></i> Pending Works</a></li>
+                <li><a href="{{route('admin.work.all')}}"><i class="far fa-circle"></i> All Works</a></li>
+                <li><a href="{{route('admin.work.export')}}"><i class="far fa-circle"></i> Export all to excel</a></li>
 
             </ul>
         </li>

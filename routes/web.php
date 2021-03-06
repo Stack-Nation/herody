@@ -32,35 +32,11 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
     Route::post('change-password','HomeController@PasswordUpdate')->name('changePassword');
     Route::post('logout','HomeController@logout')->name('logout');
 
-    //Gig
-    Route::get('gig', 'CampaignController@ShowAllCampaign')->name('campaign.all');
-    Route::get('pending-gig', 'CampaignController@pendings')->name('campaign.pendings');
-    Route::get('gig-log', 'CampaignController@ShowCampaignLog')->name('campaign.log');
-    Route::get('create-gig', 'CampaignController@CreateCampaign')->name('campaign.create');
-    Route::post('create-gig', 'CampaignController@StoreCampaign')->name('store.campaign');
-    Route::get('approve-gig/{id}','CampaignController@approveCampaign')->name('campaignp.approve');
-    Route::get('reject-gig/{id}','CampaignController@rejectCampaign')->name('campaignp.reject');
-
-    Route::post('gig-delete', 'CampaignController@DeleteCampaign')->name('campaign.delete');
-    Route::get('gig-applications/{id}', 'CampaignController@Campaignapp')->name('campaign.app');
-    Route::get('gig-applications/{jid}/approve/{uid}', 'CampaignController@Campaignapprove')->name('campaign.approve');
-    Route::get('gig-applications/{jid}/reject/{uid}', 'CampaignController@Campaignreject')->name('campaign.reject');
-    Route::get('gig-proofs/{jid}/view/{uid}','CampaignController@viewproof')->name('campaign.viewproof');
-    Route::get('gig-proofs/{jid}/view/{uid}/accept','CampaignController@acceptproof')->name('campaign.acceptproof');
-    Route::get('gig-proofs/{jid}/view/{uid}/reject','CampaignController@rejectproof')->name('campaign.rejectproof');
-    Route::post('gig/make-mobile', 'CampaignController@makeMobile')->name('campaign.make-mobile');
-    Route::post('gig/undo-mobile', 'CampaignController@undoMobile')->name('campaign.undo-mobile');
-
-    //campaign category
-    Route::resource('campaign_category', 'CampaignCategoryController');
-
     //Projects
-    Route::get('pending-project', 'WorkController@pending')->name('job.pending');
-    Route::get('all-project', 'WorkController@all')->name('job.all');
-    Route::post('approve-project', 'WorkController@approve')->name('job.approve');
-    Route::post('delete-project', 'WorkController@delete')->name('job.delete');
-    Route::post('project/make-mobile', 'WorkController@makeMobile')->name('job.make-mobile');
-    Route::post('project/undo-mobile', 'WorkController@undoMobile')->name('job.undo-mobile');
+    Route::get('pending-works', 'WorkController@pending')->name('work.pending');
+    Route::get('all-works', 'WorkController@all')->name('work.all');
+    Route::post('approve-project', 'WorkController@approve')->name('work.approve');
+    Route::post('delete-project', 'WorkController@delete')->name('work.delete');
 
     //member manage
     Route::get('member', 'MemberManageController@ShowAllMember')->name('member.all');
@@ -89,9 +65,7 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
     Route::post('withdraw-reject', 'DashboardController@WithdrawReject')->name('withdraw.reject');
 
     // Excel Exports
-    Route::get('project/export','WorkController@export_excel')->name('project.export');
-    Route::get('gig/export','CampaignController@export_excel')->name('gig.export');
-    Route::get('gig/export/apps/{id}','CampaignController@export_apps')->name('gig.apps.export');
+    Route::get('work/export','WorkController@export_excel')->name('work.export');
     Route::get('withdraw/export','WithdrawController@export_excel')->name('withdraw.export');
 
     // Employers

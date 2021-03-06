@@ -16,6 +16,7 @@ class CreateWorksTable extends Migration
         Schema::create('works', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
+            $table->boolean('approved')->default(0);
             $table->string('name');
             $table->string('duration');
             $table->string('type');
@@ -30,6 +31,7 @@ class CreateWorksTable extends Migration
             $table->date('last_complete');
             $table->double('price', 15, 8);
             $table->integer('candidates');
+            $table->json('questions');
             $table->timestamps();
         });
     }

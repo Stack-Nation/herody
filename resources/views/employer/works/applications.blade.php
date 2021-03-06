@@ -65,6 +65,9 @@
 								</form>
 							</div>
 							@endif
+							<div class="col-md-4">
+								<button class="btn btn-primary btn-sm" data-answers="{{$application->answers}}" onclick="viewAns(this)">View Answers</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -77,4 +80,41 @@
 </section>
 <!-- JOB LIST START -->
 </div>
+
+<div class="modal fade" id="answers" tabindex="-1" role="dialog" aria-labelledby="answers">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="answersLabel">Answers</h4>
+            </div>
+                <div class="modal-body">
+                    @foreach (json_decode($application->work->questions) as $key => $question)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group app-label mt-2">
+                                <label class="text-muted">{{$question}}</label>
+                                <input type="text" id="ans{{$key}}" required class="form-control resume" placeholder="" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+@section('scripts')
+	<script>
+		function viewAns(obj){
+			const ans = $(obj).data("answers");
+			ans.map((key,a)=>{
+				$(`#ans${a}`).val(key);
+			});
+			$("#answers").modal("show");
+		}
+	</script>
 @endsection

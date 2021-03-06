@@ -22,6 +22,7 @@ class CreateApplicationsTable extends Migration
             $table->json('obj_completed')->nullable();
             $table->json('files')->nullable();
             $table->json('comments')->nullable();
+            $table->json('answers')->nullable();
             $table->timestamps();
         });
     }

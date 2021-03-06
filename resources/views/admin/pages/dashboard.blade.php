@@ -15,8 +15,8 @@
                     </div>
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
-                    <a href="{{route('admin.campaign.pendings')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">Pending Gigs</p></a>
-                    <h3 class="font-weight-bold mb-0">{{count($pendingCampaigns)}}</h3>
+                    <a href="{{route('admin.work.pending')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">Pending Works</p></a>
+                    <h3 class="font-weight-bold mb-0">{{count($pendingWorks)}}</h3>
                 </div>
             </div>
         </div>
@@ -29,23 +29,22 @@
                     </div>
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
-                    <a href="{{route('admin.campaign.all')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">In-Progress Gigs</p></a>
-                    <h3 class="font-weight-bold mb-0">{{count($InProOrdersCampaigns)}}</h3>
+                    <a href="{{route('admin.work.all')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">In-Progress Works</p></a>
+                    <h3 class="font-weight-bold mb-0">{{count($works)}}</h3>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="d-flex border">
-                <div class="bg-success text-light p-4">
+                <div class="bg-primary text-light p-4">
                     <div class="d-flex align-items-center h-100">
-                        <i class="fas fa-3x fa-fw fa-check"></i>
+                        <i class="fa fa-3x fa-fw fa-users"></i>
 
                     </div>
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
-                    <a href="{{route('admin.campaign.log')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">Complete Gigs</p></a>
-
-                    <h3 class="font-weight-bold mb-0">{{count($LogCampaigns)}}</h3>
+                    <a href="{{route('admin.employers')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">All Companies</p></a>
+                    <h3 class="font-weight-bold mb-0">{{count($employers)}}</h3>
                 </div>
             </div>
         </div>
@@ -61,7 +60,7 @@
                     </div>
                 </div>
                 <div class="flex-grow-1 bg-white p-4">
-                    <a href="{{route('admin.member.all')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">All Members</p></a>
+                    <a href="{{route('admin.member.all')}}" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">All Workers</p></a>
 
                     <h3 class="font-weight-bold mb-0">{{count($allUsers)}}</h3>
                 </div>

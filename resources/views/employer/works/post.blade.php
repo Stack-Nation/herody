@@ -159,6 +159,20 @@
 							<hr>
 
 							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group app-label mt-2" id="questions">
+										<h4 class="text-muted">Questions</h4>
+										<div>
+											<label class="text-muted mt-1">Question</label>
+											<input type="text" name="questions[]" class="form-control resume" placeholder="" required>
+										</div>
+									</div>
+									<button class="btn btn-info mb-3" type="button" onclick="addQuestion()">Add more questions</button>
+								</div>
+							</div>
+							<hr>
+
+							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group app-label mt-2">
 										<label class="text-muted">Last Date To Apply</label>
@@ -269,6 +283,23 @@
 		$("#responsibilities").append(objective);
 	}
 	function deleteResponsibility(obj){
+		$($($($(obj).parent()).parent()).parent()).remove();
+	}
+	function addQuestion(){
+		const objective = `
+			<div>
+				<div class="row justify-content-around mt-1">
+					<label class="text-muted col-md-6">Question</label>
+					<div class="col-md-6">
+						<button class="btn btn-danger btn-sm" type="button" onclick="deleteQuestion(this)"><i class="fa fa-trash"></i></button>
+					</div>
+				</div>
+				<input type="text" name="questions[]" class="form-control resume" placeholder="" required>
+			</div>
+		`;
+		$("#questions").append(objective);
+	}
+	function deleteQuestion(obj){
 		$($($($(obj).parent()).parent()).parent()).remove();
 	}
 </script>

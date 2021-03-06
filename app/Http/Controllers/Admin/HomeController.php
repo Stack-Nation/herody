@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Admin;
-use App\Gig;
-use App\PendingGig;
+use App\Work;
 use App\User;
 use App\Withdraw;
 use App\WithdrawRequest;

@@ -81,6 +81,7 @@ class WorkController extends Controller
             "last_complete"=>"required",
             "candidates"=>"required",
             "responsibilities"=>"required",
+            "questions"=>"required",
             "obj_description"=>"required",
             "obj_file"=>"required",
             "obj_price"=>"nullable",
@@ -100,6 +101,7 @@ class WorkController extends Controller
         $work->last_complete = $request->last_complete;
         $work->candidates = $request->candidates;
         $work->responsibilities = json_encode($request->responsibilities,true);
+        $work->questions = json_encode($request->questions,true);
         $objectives = [];
         foreach($request->obj_description as $key=>$description){
             $path = "assets/work/files/";
@@ -145,6 +147,7 @@ class WorkController extends Controller
                     $path = "assets/work/files/";
                     unlink($path.$obj->file);
                 }
+                Application::where("work_id",$work->id)->delete();
                 $work->delete();
                 $request->session()->flash('success', "Work deleted");
                 return redirect()->back();

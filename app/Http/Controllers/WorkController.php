@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 class WorkController extends Controller
 {
     public function list(){
-        $works = Work::latest()->paginate(10);
+        $works = Work::where("approved",1)->latest()->paginate(10);
         $cats = [
             "SALES & BUSINESS DEVELOPMENT",
             "PRODUCTION",
@@ -55,7 +55,7 @@ class WorkController extends Controller
             return redirect('works');
         }
         else{
-            $works = Work::where('category',$request->cat)->latest()->paginate(30);
+            $works = Work::where(['category'=>$request->cat,"approved"=>1])->latest()->paginate(30);
         }
         $cats = [
             "SALES & BUSINESS DEVELOPMENT",
@@ -99,6 +99,7 @@ class WorkController extends Controller
             if(md5($work->name)===$name){
                 $work->objectives = \json_decode($work->objectives);
                 $work->responsibilities = \json_decode($work->responsibilities);
+                $work->questions = \json_decode($work->questions);
                 return view('works.details')->with([
                     'work' => $work,
                 ]);
@@ -111,6 +112,7 @@ class WorkController extends Controller
     public function apply(Request $request){
         $this->validate($request,[
             'id' => 'required',
+            'answers' => 'required',
         ]);
         $id = $request->id;
         $work = Work::find($id);
@@ -128,6 +130,7 @@ class WorkController extends Controller
                 $application->user_id = Auth::user()->id;
                 $application->work_id = $id;
                 $application->status = 0;
+                $application->answers = \json_encode($request->answers);
                 $application->save();
                 Session()->flash('success','Applied for the work');
                 return redirect()->back();
