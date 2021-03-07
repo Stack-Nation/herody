@@ -21,7 +21,7 @@ class CreateChatsTable extends Migration
             $table->string('sender_type');
             $table->string('receiver_type');
             $table->longText('message');
-            $table->boolean('issen')->default(false);
+            $table->boolean('isseen')->default(false);
             $table->timestamps();
         });
     }

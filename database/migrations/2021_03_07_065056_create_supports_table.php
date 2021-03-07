@@ -16,9 +16,9 @@ class CreateSupportsTable extends Migration
         Schema::create('supports', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('sender_id');
-            $table->bigInteger('receiver_id');
             $table->string('sender_type');
-            $table->string('receiver_type');
+            $table->string('team_type');
+            $table->string('status')->default("Assigned");
             $table->timestamps();
         });
     }

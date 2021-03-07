@@ -28,7 +28,8 @@
 							<li class="list-inline-item f-15"><span class="badge badge-{{$application->status===0?"info":($application->status===1?"primary":($application->status===2?"success":($application->status===3?"danger":($application->status===4?"secondary":""))))}}">{{$application->status===0?"Applied":($application->status===1?"Shortlisted":($application->status===2?"Selected":($application->status===3?"Rejected":($application->status===4?"Paid":""))))}}</span></li>
 						</ul>
 						<div class="grid-list-img mt-3">
-							<img src="@if($application->worker->profile_photo==NULL) {{asset('assets/user/images/frontEnd/demo.png')}} @else {{asset('assets/user/images/user_profile/'.$application->worker->profile_photo)}} @endif" alt="" class="img-fluid d-block avatar avatar-small mr-3 rounded-pill">
+							<img src="@if($application->worker->profile_photo==NULL) {{asset('assets/user/images/frontEnd/demo.png')}} @else {{asset('assets/user/images/user_profile/'.$application->worker->profile_photo)}} @endif" alt="" class="img-fluid d-inline avatar avatar-small mr-3 rounded-pill">
+							<a href="{{route("employer.messages",["User",$application->user_id])}}" class="btn btn-success btn-inline"><i class="fa fa-comment"></i></a>
 						</div>
 						<div class="grid-list-desc mt-3">
 							<h5 class="mb-1"><a href="{{route("applicant.view",$application->worker->id)}}" class="text-dark">{{$application->worker->name}}</a></h5>

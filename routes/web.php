@@ -145,6 +145,12 @@ Route::middleware(['employerAuth','empEmail','BrandCheck'])->namespace('Employer
     Route::get('wallet','WalletController@index')->name('wallet');
     Route::post('wallet/add','WalletController@addMoney')->name('wallet.add');
     Route::post('wallet/add/done/{amount}','WalletController@doneMoney')->name('wallet.add.done');
+
+    // Chats
+    Route::get('chats','ChatController@index')->name('chats');
+    Route::get('messages/{type}/{id}','ChatController@messages')->name('messages');
+    Route::get('support','ChatController@support')->name('support');
+    Route::post('sendMessage','ChatController@sendMessage')->name('sendMessage');
 });
 Route::get('employer/email-not-verified',function(){
     return view('employer.pages.text_email_verify');
@@ -200,6 +206,12 @@ Route::middleware(['auth','verified'])->namespace('User')->prefix('user')->name(
     Route::get('works/work/{id}','WorkController@work')->name('works.work');
     Route::post('works/work/{id}/whole','WorkController@whole')->name('works.work.whole');
     Route::post('works/work/{id}/objective','WorkController@objective')->name('works.work.objective');
+
+    // Chats
+    Route::get('chats','ChatController@index')->name('chats');
+    Route::get('messages/{type}/{id}','ChatController@messages')->name('messages');
+    Route::get('support','ChatController@support')->name('support');
+    Route::post('sendMessage','ChatController@sendMessage')->name('sendMessage');
 });
 
 //User View
