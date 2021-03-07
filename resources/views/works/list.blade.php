@@ -57,7 +57,12 @@
 						<div class="job-list-box border rounded">
 							<div class="p-3">
 								<div class="row align-items-center">
-									<div class="col-lg-9 col-md-9">
+									<div class="col-lg-2">
+										<div class="company-logo-img">
+											<img src="{{("assets/employer/profile_images/".$work->employer->profile_photo)}}" alt="" class="img-fluid mx-auto d-block">
+										</div>
+									</div>
+									<div class="col-lg-7 col-md-9">
 										<div class="job-list-desc">
 											<h6 class="mb-2"><a href="{{route("work.details",[$work->id,md5($work->name)])}}" class="text-dark">{{$work->name}}</a></h6>
 											<p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>{{$work->employer->cname}}</p>

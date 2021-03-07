@@ -77,7 +77,7 @@
                                         </li>
                                     </ul>
                                     @else
-                                    <p>Uploaded file: <a href="{{asset("assets/user/work/".$work->files->{$objective->description}->file)}}" target="_blank" class="btn btn-link">Click here to view uploded file</a></p>
+                                    <p>Uploaded file: <a href="{{asset("assets/user/work/".$work->files->{$objective->description}->file)}}" target="_blank" class="btn btn-link">Click here to view uploaded file</a></p>
                                     @endif
                                 </div>
                                 @endforeach
