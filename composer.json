@@ -12,7 +12,6 @@
         "anandsiddharth/laravel-paytm-wallet": "^1.0.0",
         "fideloper/proxy": "^4.4",
         "intervention/image": "^2.5",
-        "jazmy/jaz-form-builder": "dev-master",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",

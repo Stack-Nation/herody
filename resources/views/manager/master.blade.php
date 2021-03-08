@@ -37,7 +37,6 @@
     <script src=" {{asset('assets/admin/js/morris.min.js')}}"></script>
 
     <title>@yield('title')</title>
-    @stack('styles')
     @yield('heads')
 </head>
 <body class="bg-light">
@@ -87,7 +86,6 @@ toastr.error("{{$error}}")
         'csrfToken' => csrf_token(),
     ]) ; @endphp;
 </script>
-    @stack('scripts')
 @yield('scripts')
 
 </body>
