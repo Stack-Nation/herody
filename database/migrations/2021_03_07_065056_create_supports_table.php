@@ -17,7 +17,7 @@ class CreateSupportsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('sender_id');
             $table->string('sender_type');
-            $table->string('team_type');
+            $table->string('team_id');
             $table->string('status')->default("Assigned");
             $table->timestamps();
         });

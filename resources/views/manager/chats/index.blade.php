@@ -1,37 +1,28 @@
 <?php
     $enc = array();
 ?>
-@extends('layouts.app')
-@section('title',config('app.name').' | My Chats')
-@section('content')
-@include('includes.emp-sidebar')
-<div class="page-content" id="content">
-@include('includes.col-btn')
-<!-- JOB LIST START -->
-<section class="section pt-0">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-12">
-				<div class="section-title text-center mb-4 pb-2">
-					<h4 class="title title-line pb-5">Chats</h4>
-                    <a href="{{route("employer.support")}}" class="btn btn-info float-right">Initiate Support</a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-            <div class="col-md-12">
-                @if($chats->count()===0)
-                <div class="col-md-12">
-                    <p>No data Found</p>
-                </div>
-                @else
+@extends('manager.master')
+@section('title','Admin | Chats')
+@section('body')
+
+<div class="container-fluid">
+    <h2 class="mb-4">My Chats</h2>
+
+    <div class="card mb-4">
+        <div class="card-header bg-white font-weight-bold">
+            Chats
+        </div>
+        <div class="card-body">
+            @if(count($chats)==0)
+                <h2 class="text-center">@lang('No Data Available')</h2>
+            @else
                 <ul class="list-group">
                 @foreach ($chats as $message)
                 @if(in_array(["id"=>$message->sender_id,"type"=>$message->sender_type],$enc) or in_array(["id"=>$message->receiver_id,"type"=>$message->receiver_type],$enc))
                     <?php continue; ?>
                 @else
                 <?php 
-                    if($message->sender_id==Auth::guard("employer")->id() && $message->sender_type==="Company"){
+                    if($message->sender_id==Auth::guard("manager")->id() && $message->sender_type==="Support"){
                         array_push($enc,["id"=>$message->receiver_id,"type"=>$message->receiver_type]);
                         $uid = $message->receiver_id;
                         $type = $message->receiver_type;
@@ -60,14 +51,28 @@
                         <br/>
                         <span class="float-left">
                             <span class="mt-2" style="margin-left:3em;height:3.5em;width:70%">
-                            <a href="{{route("employer.messages",[$type,$uid])}}" class="text-decoration-none text-truncate" style="color:black;display:block;height:100%;width:100%">
+                            <a href="{{route("manager.messages",[$type,$uid])}}" class="text-decoration-none text-truncate" style="color:black;display:block;height:100%;width:100%">
                                 {!!$message->message!!}
                             </a>
                             </span>
                             <br/>
                             <span class="fa fa-clock mr-2"></span>{{\Carbon\Carbon::parse($message->created_at)->diffForHumans()}}
+                            @if(\App\Support::find($message->support_id)->status==="Closed" or \App\Support::find($message->support_id)->status==="Solved")
+                            <span>The ticked is {{\App\Support::find($message->support_id)->status}}</span>
+                            @else
+                            <form action="{{route("manager.chats.close")}}" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$message->support_id}}">
+                                <button class="btn btn-danger mt-2 btn-inline d-inline" type="submit">Mark as closed</button>
+                            </form>
+                            <form action="{{route("manager.chats.solve")}}" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$message->support_id}}">
+                                <button class="btn btn-success mt-2 btn-inline d-inline" type="submit">Mark as solved</button>
+                            </form>
+                            @endif
                         </span>
-                        @if($message->sender_id==Auth::guard("employer")->id() && $message->sender_type==="Company")
+                        @if($message->sender_id==Auth::guard("manager")->id() && $message->sender_type==="Support")
                         <span class="float-right">
                             @if($message->isseen==0)
                             <span class="fa fa-check"></span>
@@ -85,6 +90,4 @@
 		</div>
 	</div>
 </section>
-<!-- JOB LIST START -->
-</div>
 @endsection

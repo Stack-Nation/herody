@@ -96,6 +96,68 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
     // Employers
     Route::get('employers','EmployerController@index')->name('employers');
     Route::post('employer/login','EmployerController@login')->name('employer.login');
+
+    // Chats
+    Route::get('chats','ChatController@index')->name('chats');
+    Route::post('chats/assign','ChatController@assign')->name('chats.assign');
+    Route::get('messages/{type}/{id}','ChatController@messages')->name('messages');
+    Route::post('sendMessage','ChatController@sendMessage')->name('sendMessage');
+
+    // Support
+    Route::get('supports','SupportController@index')->name('supports');
+    Route::post('supports/delete','SupportController@delete')->name('supports.delete');
+});
+
+// Manager
+Route::get('manager','Manager\HomeController@index')->name('manager');
+Route::post('manager','Manager\HomeController@login')->name('manager');
+Route::middleware(['Manager'])->prefix('manager')->namespace('Manager')->name('manager.')->group(function () {
+    // Dashboard
+    Route::get('dashboard','DashboardController@dashboard')->name('dashboard');
+    Route::get('change-password','HomeController@changePassword')->name('changePassword');
+    Route::post('change-password','HomeController@PasswordUpdate')->name('changePassword');
+    Route::post('logout','HomeController@logout')->name('logout');
+
+    //Projects
+    Route::get('pending-works', 'WorkController@pending')->name('work.pending');
+    Route::get('all-works', 'WorkController@all')->name('work.all');
+    Route::post('approve-project', 'WorkController@approve')->name('work.approve');
+    Route::post('delete-project', 'WorkController@delete')->name('work.delete');
+
+    //member manage
+    Route::get('member', 'MemberManageController@ShowAllMember')->name('member.all');
+    Route::get('pending-regs', 'MemberManageController@pending')->name('member.pending');
+    Route::get('pending-regs/approve/{id}', 'MemberManageController@approve')->name('member.approve');
+    Route::get('pending-regs/reject/{id}', 'MemberManageController@reject')->name('member.reject');
+    Route::get('member/{id}', 'MemberManageController@ShowMemberDetails')->name('member.details');
+    Route::post('member-update', 'MemberManageController@MemberUpdate')->name('member.update');
+    Route::get('member/export/excel', 'MemberManageController@excel_export')->name('member.export');
+    Route::get('member/export/referrals', 'MemberManageController@excel_referrals')->name('member.export.referrals');
+
+    //Withdraw methods
+    Route::get('withdrawals/pending', 'WithdrawalController@pending')->name('withdrawals.pending');
+    Route::post('withdrawals/accept', 'WithdrawalController@accept')->name('withdrawals.accept');
+    Route::post('withdrawals/reject', 'WithdrawalController@reject')->name('withdrawals.reject');
+    Route::get('withdrawals/approved', 'WithdrawalController@approved')->name('withdrawals.approved');
+
+    // Excel Exports
+    Route::get('work/export','WorkController@export_excel')->name('work.export');
+    Route::get('withdraw/export','WithdrawalController@export_excel')->name('withdraw.export');
+
+    // Employers
+    Route::get('employers','EmployerController@index')->name('employers');
+    Route::post('employer/login','EmployerController@login')->name('employer.login');
+
+    // Chats
+    Route::get('chats','ChatController@index')->name('chats');
+    Route::post('chats/solve','ChatController@solve')->name('chats.solve');
+    Route::post('chats/close','ChatController@close')->name('chats.close');
+    Route::get('messages/{type}/{id}','ChatController@messages')->name('messages');
+    Route::post('sendMessage','ChatController@sendMessage')->name('sendMessage');
+
+    // Support
+    Route::get('supports','SupportController@index')->name('supports');
+    Route::post('supports/delete','SupportController@delete')->name('supports.delete');
 });
 
 
@@ -224,59 +286,5 @@ Route::get('users/{id}/print-pdf','ApplicantController@print')->name('print.pdf'
 Route::get('certificate/{jid}/user/{uid}/view','ApplicantController@printc')->name('certificate.print');
 
 
-//Manager Routes
-Route::get('manager/users/export/excel','Admin\MemberManageController@excel_export')->name('manager.member.export');
-Route::get('manager/users/export/excel/ref','Admin\MemberManageController@excel_referrals')->name('manager.member.export.referrals');
-Route::get('manager/login','Manager\HomeController@loginr')->name('manager.loginr');
-Route::post('manager/login','Manager\HomeController@login')->name('manager.login');
-Route::middleware(['Manager'])->prefix('manager')->name('manager.')->namespace('Manager')->group(function(){
-    Route::get('dashboard','MainController@dashboard')->name('dashboard');
-    Route::get('pending-projects','MainController@pendingjobs')->name('pendingjobs');
-    Route::get('all-projects','MainController@jobAll')->name('jobs.all');
-    Route::post('pending-projects/approve','MainController@jobApprove')->name('job.approve');
-    Route::post('pending-projects/reject','MainController@jobReject')->name('job.delete');
-    Route::get('pending-gigs','MainController@pendingGigs')->name('gigs.pending');
-    Route::get('all-gigs','MainController@allGigs')->name('gigs.all');
-    Route::get('create-gigs','MainController@createGig')->name('gigs.create');
-    Route::post('create-gigs','MainController@storeGig')->name('gig.create');
-    Route::get('approve-campaign/{id}','MainController@approveCampaign')->name('campaign.approve');
-    Route::get('reject-campaign/{id}','MainController@rejectCampaign')->name('campaign.reject');
-    // Campaigns
-    Route::get('campaigns','CampaignController@index')->name('missions');
-    Route::get('campaign/create','CampaignController@creater')->name('mission.create');
-    Route::post('campaign/create','CampaignController@create')->name('mission.create');
-    Route::post('storeForm','CampaignController@storeForm')->name('mission.storeForm');
-    Route::post('campaign/delete','CampaignController@delete')->name('mission.delete');
-    Route::get('campaign/applications/{id}','CampaignController@applications')->name('mission.applications');
-    Route::get('campaign/applications/accept/{id}','CampaignController@accept')->name('mission.accept');
-    Route::get('campaign/applications/reject/{id}','CampaignController@reject')->name('mission.reject');
-    Route::get('campaign/response/{id}','CampaignController@response')->name('mission.response');
-    Route::post('campaign/response/accept','CampaignController@acceptResp')->name('mission.acceptResp');
-    Route::post('campaign/response/reject','CampaignController@rejectResp')->name('mission.rejectResp');
-
-    // Employers
-    Route::get('employers','EmployerController@index')->name('employers');
-    Route::post('employer/login','EmployerController@login')->name('employer.login');
-
-    // Telecallings
-    Route::get('telecallings','TelecallingController@index')->name('telecallings');
-    Route::get('telecallings/create','TelecallingController@create')->name('telecalling.create');
-    Route::post('telecallings/create','TelecallingController@createPost')->name('telecalling.create');
-    Route::post('telecallings/delete','TelecallingController@delete')->name('telecalling.delete');
-    Route::get('telecalling/applications/{id}','TelecallingController@applications')->name('telecalling.applications');
-    Route::post('telecalling/distribute','TelecallingController@distribute')->name('telecalling.distribute');
-    Route::post('telecalling/application/select','TelecallingController@select')->name('telecalling.select');
-    Route::post('telecalling/application/reject','TelecallingController@reject')->name('telecalling.reject');
-    Route::get('telecalling/application/view-data/{tid}/{uid}','TelecallingController@viewData')->name('telecalling.viewdata');
-    Route::get('telecalling/application/view-feedback/{id}','TelecallingController@feedback')->name('telecalling.feedback');
-
-    
-    Route::get('logout','HomeController@logout')->name('logout');
-});
-
 // TEST
 // Route::get('test','TestController@test');
-Route::get('/acc_details',"RazorpayController@create_contact");
-Route::post('/acc_details',"RazorpayController@add_contact");
-Route::get('/givereward/{id}/{amt}',"RazorpayController@givereward");
-

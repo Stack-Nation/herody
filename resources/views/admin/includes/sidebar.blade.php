@@ -16,6 +16,8 @@
         </li>
         <li id="managers"><a href="{{route('admin.managers')}}"><i class="far fa-user"></i> Managers</a></li>
         <li id="employers"><a href="{{route('admin.employers')}}"><i class="fa fa-building"></i> Employers</a></li>
+        <li id="chats"><a href="{{route('admin.chats')}}"><i class="fa fa-comments"></i> Chats</a></li>
+        <li id="supports"><a href="{{route('admin.supports')}}"><i class="fa fa-headset"></i> Supports</a></li>
 
         <li>
             <a href="#Withdraw" data-toggle="collapse">

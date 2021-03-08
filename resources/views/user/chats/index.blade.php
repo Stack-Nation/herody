@@ -27,23 +27,23 @@
                 @else
                 <ul class="list-group">
                 @foreach ($chats as $message)
-                @if(in_array($message->sender_id,$enc) or in_array($message->receiver_id,$enc))
+                @if(in_array(["id"=>$message->sender_id,"type"=>$message->sender_type],$enc) or in_array(["id"=>$message->receiver_id,"type"=>$message->receiver_type],$enc))
                     <?php continue; ?>
                 @else
                 <?php 
                     if($message->sender_id==Auth::user()->id && $message->sender_type==="User"){
-                        array_push($enc,$message->receiver_id);
+                        array_push($enc,["id"=>$message->receiver_id,"type"=>$message->receiver_type]);
                         $uid = $message->receiver_id;
                         $type = $message->receiver_type;
                     }
                     else{
-                        array_push($enc,$message->sender_id);
+                        array_push($enc,["id"=>$message->sender_id,"type"=>$message->sender_type]);
                         $uid = $message->sender_id;
                         $type = $message->sender_type;
                     }
                     if($type === "Support"){
                         $name = "Support";
-                        $image = "assets/main/images/logo.png";
+                        $image = "assets/main/images/logo-dark.png";
                     }
                     else if($type === "User"){
                         $name = \App\User::find($uid)->name;
@@ -67,7 +67,7 @@
                             <br/>
                             <span class="fa fa-clock mr-2"></span>{{\Carbon\Carbon::parse($message->created_at)->diffForHumans()}}
                         </span>
-                        @if($message->sender_id==Auth::user()->id)
+                        @if($message->sender_id==Auth::user()->id && $message->sender_type==="User")
                         <span class="float-right">
                             @if($message->isseen==0)
                             <span class="fa fa-check"></span>
