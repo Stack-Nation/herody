@@ -109,13 +109,21 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
 
     // Join Team
     Route::get('join-team/page','JoinTeamController@index')->name('join-team.page');
+    Route::post('join-team/page','JoinTeamController@page')->name('join-team.page');
     Route::get('join-team/categories','JoinTeamController@categories')->name('join-team.categories');
+    Route::post('join-team/categories','JoinTeamController@category')->name('join-team.categories');
+    Route::post('join-team/categories/delete','JoinTeamController@categoryDelete')->name('join-team.categories.delete');
     Route::get('join-team/forms','JoinTeamController@forms')->name('join-team.forms');
+    Route::post('join-team/forms/delete','JoinTeamController@formsDelete')->name('join-team.forms.delete');
 
     // Custom Project
-    Route::get('custom-project/page','CustomProjectController@index')->name('custom-project.page');
-    Route::get('custom-project/categories','CustomProjectController@categories')->name('custom-project.categories');
-    Route::get('custom-project/forms','CustomProjectController@forms')->name('custom-project.forms');
+    Route::get('custom-project/page','JoinTeamController@index')->name('custom-project.page');
+    Route::post('custom-project/page','JoinTeamController@page')->name('custom-project.page');
+    Route::get('custom-project/categories','JoinTeamController@categories')->name('custom-project.categories');
+    Route::post('custom-project/categories','JoinTeamController@category')->name('custom-project.categories');
+    Route::post('custom-project/categories/delete','JoinTeamController@categoryDelete')->name('custom-project.categories.delete');
+    Route::get('custom-project/forms','JoinTeamController@forms')->name('custom-project.forms');
+    Route::post('custom-project/forms/delete','JoinTeamController@formsDelete')->name('custom-project.forms.delete');
 });
 
 // Manager
