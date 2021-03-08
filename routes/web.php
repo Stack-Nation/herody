@@ -303,6 +303,13 @@ Route::get('users/{id}/print-pdf','ApplicantController@print')->name('print.pdf'
 //Certificate Controller
 Route::get('certificate/{jid}/user/{uid}/view','ApplicantController@printc')->name('certificate.print');
 
+// Join Team
+Route::get('join-team','JoinTeamController@index')->name('join-team');
+Route::post('join-team','JoinTeamController@form')->name('join-team');
+
+// Custom Project
+Route::get('custom-project','CustomProjectController@index')->name('custom-project');
+Route::post('custom-project','CustomProjectController@form')->name('custom-project');
 
 // TEST
 // Route::get('test','TestController@test');

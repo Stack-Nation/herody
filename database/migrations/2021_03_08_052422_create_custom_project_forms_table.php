@@ -17,7 +17,7 @@ class CreateCustomProjectFormsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('category_id');
             $table->string('name');
-            $table->string('starup')->nullable();
+            $table->string('startup')->nullable();
             $table->string('email');
             $table->string('phone');
             $table->string('resume');

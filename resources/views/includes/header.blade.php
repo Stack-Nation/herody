@@ -37,6 +37,12 @@
                   <li @if(Request::route()->getName()==="works") class="active" @endif>
                     <a href="{{route("works")}}">Works</a>
                   </li>
+                  <li @if(Request::route()->getName()==="join-team") class="active" @endif>
+                    <a href="{{route("join-team")}}">Join Team</a>
+                  </li>
+                  <li @if(Request::route()->getName()==="custom-project") class="active" @endif>
+                    <a href="{{route("custom-project")}}">Need a custom project?</a>
+                  </li>
                   @if(!Auth::check() and !Auth::guard('employer')->check() and !Auth::guard('manager')->check())
                   <li>
                     <a href="{{route('register')}}">Register</a>
