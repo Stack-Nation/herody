@@ -12,7 +12,7 @@
                 Page
             </div>
             <div class="card-body">
-                <form action="{{route("admin.join-team.page")}}" method="post" enctype="multipart/form-data">
+                <form action="{{route("admin.custom-project.page")}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="heading">Heading</label>
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-12 mt-2">
-                            <img src="{{asset("assets/join_team/image/".$page->image)}}" alt="image" height="200px" width="200px" class="img-fluid img-responsive">
+                            <img src="{{asset("assets/custom_project/image/".$page->image)}}" alt="image" height="200px" width="200px" class="img-fluid img-responsive">
                         </div>
                     </div>
                     <div class="form-group">
@@ -47,8 +47,8 @@
     </div>
     {{--dropdown active--}}
     <script>
-        $('#joinTeam li:nth-child(1)').addClass('active');
-        $('#joinTeam').addClass('show');
+        $('#customProject li:nth-child(1)').addClass('active');
+        $('#customProject').addClass('show');
     </script>
 @endsection
 @section('scripts')
