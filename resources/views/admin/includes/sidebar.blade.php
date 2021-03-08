@@ -43,6 +43,32 @@
             </ul>
         </li>
 
+        <li>
+            <a href="#joinTeam" data-toggle="collapse">
+                <i class="fa fa-fw fa-user-friends"></i> Join Team
+            </a>
+            <ul id="joinTeam" class="list-unstyled collapse">
+
+                <li><a href="{{route('admin.join-team.page')}}"><i class="far fa-circle"></i> Page Settings</a></li>
+                <li><a href="{{route('admin.join-team.categories')}}"><i class="far fa-circle"></i> Categories</a></li>
+                <li><a href="{{route('admin.join-team.forms')}}"><i class="far fa-circle"></i> Forms</a></li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="#customProject" data-toggle="collapse">
+                <i class="fa fa-fw fa-project-diagram"></i> Custom Project
+            </a>
+            <ul id="customProject" class="list-unstyled collapse">
+
+                <li><a href="{{route('admin.custom-project.page')}}"><i class="far fa-circle"></i> Page Settings</a></li>
+                <li><a href="{{route('admin.custom-project.categories')}}"><i class="far fa-circle"></i> Categories</a></li>
+                <li><a href="{{route('admin.custom-project.forms')}}"><i class="far fa-circle"></i> Forms</a></li>
+
+            </ul>
+        </li>
+
     </ul>
 
 </div>

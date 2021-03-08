@@ -106,6 +106,16 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
     // Support
     Route::get('supports','SupportController@index')->name('supports');
     Route::post('supports/delete','SupportController@delete')->name('supports.delete');
+
+    // Join Team
+    Route::get('join-team/page','JoinTeamController@index')->name('join-team.page');
+    Route::get('join-team/categories','JoinTeamController@categories')->name('join-team.categories');
+    Route::get('join-team/forms','JoinTeamController@forms')->name('join-team.forms');
+
+    // Custom Project
+    Route::get('custom-project/page','CustomProjectController@index')->name('custom-project.page');
+    Route::get('custom-project/categories','CustomProjectController@categories')->name('custom-project.categories');
+    Route::get('custom-project/forms','CustomProjectController@forms')->name('custom-project.forms');
 });
 
 // Manager
