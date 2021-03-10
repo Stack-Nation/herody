@@ -61,13 +61,8 @@ if($user->achievements!=NULL){
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center">
                     <div>
-                      <span class="heading">{{$user->jobs->count()}}</span>
-                      <span class="description"><i class="fa fa-paper-plane"></i> Projects</span>
-                    </div>
-                   
-                    <div>
-                      <span class="heading">{{$user->gigs->count()}}</span>
-                      <span class="description"><i class="fa fa-paper-plane"></i> Gigs</span>
+                      <span class="heading">{{$user->works->count()}}</span>
+                      <span class="description"><i class="fa fa-paper-plane"></i> Works</span>
                     </div>
                   </div>
                 </div>
