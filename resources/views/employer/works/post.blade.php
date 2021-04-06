@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title',config('app.name').' | Post an Project')
+@extends('layouts.authApp')
+@section('title',config('app.name').' | Post a Work')
 @section('content')
 @include('includes.emp-sidebar')
 <div class="page-content" id="content">

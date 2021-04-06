@@ -1,16 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title',config('app.name').' | My Project')
 @section('content')
-@include('includes.user-sidebar')
-<div class="page-content" id="content">
-@include('includes.col-btn')
-<!-- JOB LIST START -->
 <section class="section pt-0">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12">
-				<div class="section-title text-center mb-4 pb-2">
-					<h4 class="title title-line pb-5">Manage Works</h4>
+				<div class="section-title text-center mb-4 pb-2 page-head">
+					<h4 class="title title-line pb-3">Manage Works</h4>
 					<p class="text-muted para-desc mx-auto mb-1">Manage All The Works Applied By You</p>
 				</div>
 			</div>
@@ -60,7 +56,4 @@
 			{{$works->links()}}
 		</div>
 	</div>
-</section>
-<!-- JOB LIST START -->
-</div>
 @endsection

@@ -1,5 +1,5 @@
 <?php $countries = DB::table('countries')->orderBy('name','asc')->get(); ?>
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title',config('app.name').' | ' .$employer->name)
 @section("heads")
 <style>
@@ -21,16 +21,12 @@
 </style>
 @endsection
 @section('content')
-@include('includes.emp-sidebar')
-<div class="page-content p-5" id="content">
-
-@include('includes.col-btn')
 <div class="container ml-4">
 <div class="row">
 <div class="col-lg-12">
   <div class="my_profile_form_area">
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-12 page-head">
         <h4 class="fz20 mb20">Company Profile</h4>
       </div>
       <div class="col-lg-6">
@@ -212,8 +208,6 @@
   </div>
 </div>
 </div>
-</div>
-</section> 
 @endsection
 
 @section('scripts')

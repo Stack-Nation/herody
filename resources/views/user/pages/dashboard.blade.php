@@ -1,31 +1,27 @@
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title',config('app.name').' | Dashboard')
 @section('content')
-        @include('includes.user-sidebar')
-    <div class="page-content p-5" id="content">
-	@include('includes.col-btn')
-
-		<div class="container">
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="row">
-						<div class="col-lg-12">
-							<h4 class="mb30">Dashboard</h4>
-						</div>
-						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
-							<div class="ff_one">
-								<div class="icon"><span class="flaticon-paper-plane"></span></div>
-								<div class="detais">
-									<div class="timer">{{$user->works->count()}}</div>
-									<p>Works Applied</p>
-									{{-- <p><a href="{{route('user.projects.show')}}">View</a></p> --}}
-								</div>
-							</div>
-						</div>
+					<div class="page-head">
+						<h4 class="mb30">Dashboard</h4>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">
+							Works Applied
+						</h4>
+					</div>
+					<div class="card-body">
+						<div class="timer">{{$user->works->count()}}</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
 	</div>
+</div>
 @endsection

@@ -1,7 +1,7 @@
 <?php
     $states = DB::table('states')->where('country_id','101')->orderBy('name','asc')->get();
 ?>
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title',config('app.name').' | Profile')
 @section("heads")
 <style>
@@ -23,16 +23,12 @@
 </style>
 @endsection
 @section('content')
-        @include('includes.user-sidebar')
-    <div class="page-content p-5" id="content">
-    
-	@include('includes.col-btn')
 		<div class="container ml-4">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="my_profile_form_area">
 						<div class="row">
-							<div class="col-lg-12">
+							<div class="col-lg-12 page-head">
 								<h4 class="fz20 mb20">My Profile</h4>
 							</div>
 							<div class="col-lg-12">
@@ -118,8 +114,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
 @endsection
 @section('scripts')
 <script src="{{asset('assets/main/js/world.js')}}"></script>

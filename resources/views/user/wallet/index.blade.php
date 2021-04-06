@@ -1,13 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title',config('app.name').' | Wallet')
 @section('content')
-@include('includes.user-sidebar')
-<div class="page-content" id="content">
-@include('includes.col-btn')
-<!-- POST A JOB START -->
 <section class="section">
 	<div class="container">
 		<div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="page-head">
+                    <h2>Wallet</h2>
+                </div>
+            </div>
 			<div class="col-lg-10">
 				<div class="rounded shadow bg-white p-4">
 					<div class="custom-form">
@@ -81,8 +82,6 @@
 		</div>
 	</div>
 </section>
-<!-- POST A JOB END -->
-</div>
 
 <div class="modal fade" id="withdraw" tabindex="-1" role="dialog" aria-labelledby="withdraw">
     <div class="modal-dialog" role="document">

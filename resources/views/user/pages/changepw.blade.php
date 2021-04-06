@@ -1,12 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title',config('app.name').' | Change Password')
 
 @section('content')
-        @include('includes.user-sidebar')
-    <div class="page-content p-5" id="content">
-        
-	@include('includes.col-btn')
-        <div class="container">
+        <div class="container mt-4">
       <div class="row">
         <div class="col-lg-12">
           
@@ -51,7 +47,4 @@
         </div>
       </div>
       <!-- Footer -->
-     
-    </div>
-</section>
 @endsection
