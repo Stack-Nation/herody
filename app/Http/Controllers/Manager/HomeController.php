@@ -40,7 +40,7 @@ class HomeController extends Controller
         } else {
             //redirect
             Session()->flash('warning', 'Please enter correct email and password!');
-            return redirect()->route('manager.login');
+            return redirect()->route('manager');
         }
     }
 
