@@ -1,11 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title',config('app.name').' | Edit Work')
 @section('content')
-@include('includes.emp-sidebar')
-<div class="page-content" id="content">
-@include('includes.col-btn')
-<!-- POST A JOB START -->
-<section class="section">
+<section class="section mt-2">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-10">
@@ -146,8 +142,6 @@
 		</div>
 	</div>
 </section>
-<!-- POST A JOB END -->
-</div>
 @endsection
 
 @section('scripts')

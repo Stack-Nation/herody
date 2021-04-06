@@ -21,7 +21,7 @@
 			<div class="col-lg-12 mt-1 pt-2">
 				<div class="row">
 					<div class="col-lg-12 mt-2 pt-2">
-						<div class="job-list-box border rounded">
+						<div class="job-list-box border rounded bg-light">
 							<div class="p-3">
 								<div class="row align-items-center">
 									<div class="col-lg-9 col-md-9">

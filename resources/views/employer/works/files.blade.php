@@ -1,16 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title', config('app.name').' | Files')
 @section('heads')
 @section('content')
-@include('includes.emp-sidebar')
-<div class="page-content" id="content">
-@include('includes.col-btn')
-<!-- JOB LIST START -->
 <section class="section pt-0">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12">
-				<div class="section-title text-center mb-4 pb-2">
+				<div class="section-title text-center mb-4 pb-2 page-head">
 					<h4 class="title title-line pb-5">Files uploaded by worker {{$work->worker->name}}</h4>
 				</div>
 			</div>
@@ -20,7 +16,7 @@
                     <div class="job-detail mt-2 p-2">
                         <div class="job-detail-desc">
                           @foreach ($work->work->objectives as $key => $objective)
-                          <div class="job-details-desc-item mb-3">
+                          <div class="job-details-desc-item mb-3 bg-white p-2 rounded shadow-sm">
                               <div class="float-left mr-3">
                                   <i class="mdi mdi-send text-primary"></i>
                               </div>
@@ -34,15 +30,11 @@
                               <p>User has not uploaded any file for this objective</p>
                               @endif
                           </div>
-                          <hr>
                           @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-		</div>
 	</div>
 </section>
-<!-- JOB LIST START -->
-</div>
 @endsection

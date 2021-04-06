@@ -1,29 +1,26 @@
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title', config('app.name').' | Work')
 @section('heads')
 <style>
 #stopwatch {
-    font-size: 100px;
+    font-size: 80px;
+    text-align: center;
 }
 #buttons{
-    margin-left:20px;
+    margin-top:30px;
 }
 #buttons li {
     display: inline;
-    padding-left: 10px;
+    padding-left: 100px;
 }
 </style>
 @endsection
 @section('content')
-@include('includes.user-sidebar')
-<div class="page-content" id="content">
-@include('includes.col-btn')
-<!-- JOB LIST START -->
 <section class="section pt-0">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12">
-				<div class="section-title text-center mb-4 pb-2">
+				<div class="section-title text-center mb-4 pb-2 page-head">
 					<h4 class="title title-line pb-5">Complete your work</h4>
 				</div>
 			</div>
@@ -53,7 +50,7 @@
                             <form action="{{route("user.works.work.whole",$work->id)}}" enctype="multipart/form-data" method="POST">
                                 @csrf
                                 @foreach ($work->work->objectives as $objective)
-                                <div class="job-details-desc-item">
+                                <div class="job-details-desc-item mb-3 bg-light p-2 rounded">
                                     <div class="float-left mr-3">
                                         <i class="mdi mdi-send text-primary"></i>
                                     </div>
@@ -99,7 +96,7 @@
                     <div class="job-detail mt-2 p-2">
                         <div class="job-detail-desc">
                           @foreach ($work->work->objectives as $key => $objective)
-                          <div class="job-details-desc-item mb-3">
+                          <div class="job-details-desc-item mb-3 bg-light p-2 rounded">
                               <div class="float-left mr-3">
                                   <i class="mdi mdi-send text-primary"></i>
                               </div>
@@ -129,7 +126,6 @@
                               <p>Uploaded file: <a href="{{asset("assets/user/work/".$work->files->{$objective->description}->file)}}" target="_blank" class="btn btn-link">Click here to view uploded file</a></p>
                               @endif
                           </div>
-                          <hr>
                           @endforeach
                         </div>
                     </div>
@@ -140,8 +136,6 @@
 		</div>
 	</div>
 </section>
-<!-- JOB LIST START -->
-</div>
 @endsection
 @section('scripts')
 <script>

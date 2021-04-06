@@ -19,6 +19,7 @@
     <link href="{{asset("assets/main/assets/css/icons.css")}}" rel="stylesheet">
     <link href="{{asset("assets/main/assets/css/menu.css")}}" rel="stylesheet" type="text/css">
     <link href="{{asset("assets/main/assets/css/style.css")}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
     <script>
         window.__INITIAL_STATE__ = "{{url('/')}}";
     </script>

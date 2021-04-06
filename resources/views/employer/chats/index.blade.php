@@ -1,18 +1,14 @@
 <?php
     $enc = array();
 ?>
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title',config('app.name').' | My Chats')
 @section('content')
-@include('includes.emp-sidebar')
-<div class="page-content" id="content">
-@include('includes.col-btn')
-<!-- JOB LIST START -->
 <section class="section pt-0">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12">
-				<div class="section-title text-center mb-4 pb-2">
+				<div class="section-title text-center mb-4 pb-2 page-head">
 					<h4 class="title title-line pb-5">Chats</h4>
                     <a href="{{route("employer.support")}}" class="btn btn-info float-right">Initiate Support</a>
 				</div>
@@ -85,6 +81,4 @@
 		</div>
 	</div>
 </section>
-<!-- JOB LIST START -->
-</div>
 @endsection

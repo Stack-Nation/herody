@@ -1,14 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title',config('app.name').' | Manage Works')
 @section('content')
-@include('includes.emp-sidebar')
-<div class="page-content" id="content">
-@include('includes.col-btn')
-<!-- JOB LIST START -->
 <section class="section pt-0">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-12">
+			<div class="col-12 page-head">
 				<div class="section-title text-center mb-4 pb-2">
 					<h4 class="title title-line pb-5">Manage Works</h4>
 					<p class="text-muted para-desc mx-auto mb-1">Manage All The Works Posted By You</p>
@@ -25,7 +21,7 @@
 			<div class="col-lg-12 mt-1 pt-2">
 				<div class="row">
 					<div class="col-lg-12 mt-2 pt-2">
-						<div class="job-list-box border rounded">
+						<div class="job-list-box border rounded bg-light">
 							<div class="p-3">
 								<div class="row align-items-center">
 									<div class="col-lg-9 col-md-9">
@@ -78,6 +74,4 @@
 		</div>
 	</div>
 </section>
-<!-- JOB LIST START -->
-</div>
 @endsection

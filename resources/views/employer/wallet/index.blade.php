@@ -1,11 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.authApp')
 @section('title',config('app.name').' | Wallet')
 @section('content')
-@include('includes.emp-sidebar')
-<div class="page-content" id="content">
-@include('includes.col-btn')
-<!-- POST A JOB START -->
-<section class="section">
+<section class="section mt-3">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-10">
@@ -50,8 +46,6 @@
 		</div>
 	</div>
 </section>
-<!-- POST A JOB END -->
-</div>
 
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add">
     <div class="modal-dialog" role="document">
